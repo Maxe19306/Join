@@ -1,0 +1,65 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.d-none {
+    display: none;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.word-wrap {
+    word-wrap: break-word;
+}
+
+/* Image */
+.img-20 {
+    width: 20px;
+}
+
+.img-25 {
+    width: 25px;
+}
+
+.img-50 {
+    width: 50px;
+}
+
+.img-75 {
+    width: 75px;
+}
+
+.img-100 {
+    width: 100px;
+}
+
+.img-150 {
+    width: 150px;
+}
+
+.img-200 {
+    width: 200px;
+}
+
+.img-250 {
+    width: 250px;
+}
+
+.img-500 {
+    width: 500px;
+}
