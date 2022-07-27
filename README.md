@@ -1,4 +1,3 @@
 # Gruppenarbeit Join!
 
-Neuer Test!
-test
+Test 2!
