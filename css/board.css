@@ -4,9 +4,9 @@
 }
 
 .all-boxes {
-    text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .board-box {
@@ -18,7 +18,25 @@
 
 .board-content {
     background-color: #F4F3FB;
-    height: 500px;
+    overflow: auto;
+    height: 800px;
+    padding: 10px;
+}
+
+.ticket {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 18px;
+    background-color: white;
+}
+
+.category-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 5px;
+    background-color: green;
 }
 
 @media (max-width: 768px) {
