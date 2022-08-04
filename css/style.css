@@ -38,16 +38,8 @@ body {
     margin-top: 10px;
 }
 
-.bg-green {
-    background-color: rgba(39, 148, 39, 0.89);
-}
-
-.bg-orange {
-    background-color: rgb(245, 147, 56);
-}
-
-.bg-violet {
-    background-color: rgb(134, 58, 196);
+.bg-blue {
+    background-color: rgb(113, 149, 254);
 }
 
 /* Image */
