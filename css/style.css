@@ -26,6 +26,30 @@ body {
     word-wrap: break-word;
 }
 
+.align-center {
+    align-items: center;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.bg-green {
+    background-color: rgba(39, 148, 39, 0.89);
+}
+
+.bg-orange {
+    background-color: rgb(245, 147, 56);
+}
+
+.bg-violet {
+    background-color: rgb(134, 58, 196);
+}
+
 /* Image */
 .img-20 {
     width: 20px;
