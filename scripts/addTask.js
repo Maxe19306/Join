@@ -8,7 +8,7 @@ function renderAvatarPicker() {
         document.getElementById('avatarPicker').innerHTML += `<img id="user-${i}" src="img/avatars/${user}" class="avatar" onclick="selectUser(${i})">`
 
     }
-    document.getElementById('avatarPicker').innerHTML += ` <img class="avatar" src="img/icons8-plus.png" alt="">`;
+    document.getElementById('avatarPicker').innerHTML += ` <img class="avatar" src="img/icon plus.png" alt="">`;
 }
 
 function selectUser(i) {
