@@ -1,5 +1,5 @@
 let users = ['avatar1.png', 'avatar2.png', 'avatar3.png']
-
+let allTask = []
 
 function renderAvatarPicker() {
     document.getElementById('avatarPicker').innerHTML = '';
@@ -15,4 +15,33 @@ function selectUser(i) {
 
     let user = document.getElementById('user-' + i)
     user.classList.toggle('avatar-selected');
+}
+
+
+function addTask() {
+    let title = document.getElementById('title').value;
+    let date = document.getElementById('date').value;
+    let categorie = document.getElementById('categorie').value;
+    let prio = document.getElementById('prio').value;
+    let description = document.getElementById('description').value;
+
+
+    let task = {
+        'title': title,
+        'date': date,
+        'categorie': categorie,
+        'prio': prio,
+        'description': description,
+    }
+
+
+    allTask.push(task);
+
+    let allTaskAsString = JSON.stringify(allTask);
+    localStorage.setItem('allTasks', allTaskAsString);
+}
+
+function loadAllTask() {
+    let allTaskAsString = localStorage.getItem('allTasks');
+    allTask = JSON.parse(allTaskAsString);
 }

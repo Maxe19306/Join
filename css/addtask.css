@@ -10,13 +10,13 @@ select {
 
 .addTask {
     display: flex;
-    height: 80%;
     border-radius: 10px;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    height: 85%;
 }
 
 .mainAddTaskContainer {
