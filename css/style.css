@@ -79,6 +79,14 @@ body {
     width: 500px;
 }
 
+.header-template {
+    width: 150px;
+}
+
+.bl-w-100 {
+    width: calc(100% - 150px);
+}
+
 .content-bg {
     background-color: #F4F3FB;
 }
@@ -98,5 +106,11 @@ body {
 
     .rs-mt {
         margin-top: 10px;
+    }
+    .header-template {
+        width: 0;
+    }
+    .bl-w-100 {
+        width: 100%;
     }
 }
