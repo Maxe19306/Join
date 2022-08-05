@@ -114,3 +114,20 @@ body {
         width: 100%;
     }
 }
+
+
+/* Login */
+.login-container {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
