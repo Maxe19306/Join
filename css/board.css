@@ -1,6 +1,5 @@
-
 .header-include-html {
-    width: 15px;
+    width: 150px;
 }
 
 .div-testing-Done {
@@ -12,16 +11,21 @@
 }
 
 .all-boxes {
+    width: calc(100% - 150px);
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 50px;
+}
+
+.board {
+    display: flex;
 }
 
 .board-box {
     width: 350px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-bottom: 8px;
 }
 
 .board-content {
@@ -31,8 +35,13 @@
     padding: 20px;
 }
 
+.ticket-color {
+    background-color: rgb(252, 176, 118);
+    border-radius: 10px;
+    padding-left: 8px;
+}
+
 .ticket {
-    margin-top: 10px;
     padding: 10px;
     font-size: 18px;
     background-color: white;
@@ -49,7 +58,7 @@
     font-weight: 600;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1550px) {
 
     .div-todo-progress {
         flex-direction: column;
@@ -68,36 +77,31 @@
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1350px) {
 
     .div-todo-progress {
         margin-top: -65px;
     }
 
-    .board-box {
-
-    }
-
     .all-boxes {
         flex-direction: column;
         align-items: center;
+        margin-top: 106px;
     }
-
-    .header-include-html {
-        height: 110px;
-    }
-}
-
-@media (max-width: 900px) {
 
     .board-box {
-        width: 350px;
+        margin-bottom: 40px;
     }
 }
 
 @media (max-width: 768px) {
     .div-todo-progress {
-        margin-top: 0px;
+        margin-top: 40px;
+    }
+
+    .board {
+        flex-direction: column;
+        align-items: center;
     }
     
     .header-include-html {
@@ -105,9 +109,13 @@
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 600px) {
 
     .board-box {
         width: 300px;
+    }
+
+    .header-include-html {
+        width: 100%;
     }
 }
