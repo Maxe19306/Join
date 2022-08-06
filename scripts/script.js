@@ -1,7 +1,7 @@
 setURL('https://gruppe-289.developerakademie.net/Join/smallest_backend_ever');
 
 let users = [];
-isLogedIn = false;
+let currentUser = [];
 
 
 /**
@@ -22,6 +22,8 @@ async function loadDataBaseForPanel() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('user')) || [];
     showAllUsers();
+    loadFromLocalStorage();
+    loadCurrentUser();
 }
 
 
@@ -197,6 +199,8 @@ function login() {
 
         if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
             window.location.href = "../addTask.html";
+            currentUser.push(decryptUserName);
+            saveToLocalStorage();
 
         } else {
             setTimeout(() => {
@@ -209,6 +213,32 @@ function login() {
 
         userName.value = "";
         userPassword.value = "";
+    }
+}
 
+
+function userlogout() {
+    currentUser.splice(1);
+}
+
+
+function loadCurrentUser() {
+    document.getElementById("currentUser").innerHTML = `${currentUser}`;
+    document.getElementById("currentUserResponsive").innerHTML = `${currentUser}`;
+}
+
+
+/**
+* Localstorage for the current user login
+*/
+function saveToLocalStorage() {
+    let currentUserAsText = JSON.stringify(currentUser);
+    localStorage.setItem('currentUser', currentUserAsText);
+}
+
+function loadFromLocalStorage() {
+    let currentUserAsText = localStorage.getItem('currentUser');
+    if (currentUserAsText) {
+        currentUser = JSON.parse(currentUserAsText);
     }
 }
