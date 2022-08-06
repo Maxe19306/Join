@@ -115,6 +115,30 @@ body {
     .bl-w-100 {
         width: 100%;
     }
+
+    .admin-panel-container {
+        margin-top: 100px;
+        margin-left: 0 !important;
+    }
+
+    .flex-left {
+        display: inline-grid !important;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .flex-left button {
+        margin: 0 !important;
+    }
+
+    .flex-around {
+        display: unset !important;
+    }
+
+    .delete-btn-container {
+        margin-bottom: 1rem !important;
+    }
+
 }
 
 
@@ -217,7 +241,11 @@ body {
     height: 100vh;
     padding-top: 16px;
     margin-left: 150px;
-    background-color: #F4F3FB;
+    overflow: hidden;
+}
+
+.admin-panel-inline-container {
+    display: flex;
 }
 
 .text-design {
@@ -248,7 +276,8 @@ body {
     transition: all 225ms ease-in-out;
 }
 
-.create-btn-design:hover, .delete-btn-design:hover  {
+.create-btn-design:hover,
+.delete-btn-design:hover {
     background-color: rgba(30, 49, 144, 1);
     transition: all 225ms ease-in-out;
 }
@@ -261,7 +290,7 @@ body {
 .flex-left {
     display: flex;
     justify-items: center;
-    
+
 }
 
 .flex-around {
@@ -302,4 +331,40 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: scale(1);
+    transition: all 225ms ease-in-out;
+}
+
+.transform {
+    transform: scale(0);
+    transition: all 225ms ease-in-out;
+}
+
+.all-users-container {
+    float: right;
+    height: 800px;
+    overflow: auto;
+
+}
+
+@media (max-width: 1035px) {
+    .admin-panel-inline-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .admin-panel-container {
+        overflow: hidden;
+    }
+
+    .input-container {
+        margin: 0 !important;
+    }
+
+    .all-users-container {
+        float: unset;
+        height: unset;
+        overflow: unset;
+    }
 }

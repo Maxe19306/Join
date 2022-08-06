@@ -1,13 +1,24 @@
 setURL('https://gruppe-289.developerakademie.net/Join/smallest_backend_ever');
 
 let users = [];
+isLogedIn = false;
 
 
 /**
- * Load all Users from the Server.
+ * Load all Users for the login.
  * 
  */
 async function loadDataBase() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('user')) || [];
+}
+
+
+/**
+ * Load all Users from the Server for the admin-panel.
+ * 
+ */
+async function loadDataBaseForPanel() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('user')) || [];
     showAllUsers();
@@ -54,6 +65,10 @@ const decrypt = (salt, encoded) => {
 };
 
 
+/**
+ * Show all users in the admin-panel.
+ * 
+ */
 function showAllUsers() {
     let allUsers = document.getElementById('allUsers');
     allUsers.innerHTML = "";
@@ -62,27 +77,39 @@ function showAllUsers() {
         const decryptUserName = decrypt('salt', users[i]['name']);
         const isAdmin = users[i]['isAdmin'];
 
-        allUsers.innerHTML += /*html*/ `
-        <div class="flex-left underline mt-3">
-            <div class=" width-200px">
-                <span><b>Username:</b><br></span> 
-                <span>${decryptUserName}</span>
-            </div>
-            <div class="mb-3 width-200px">
-                <span class=""><b>Admin:</b><br></span> 
-                <span id="admin${i}"></span>
-            </div>      
-            <div>
-                <button onclick="deleteUsers(${i})" class="delete-btn-design">Delete</button>
-            </div>     
-        </div>`
+        allUsers.innerHTML += generateShowAllUsersHTML(decryptUserName, i);
 
-        if(isAdmin == true) {
+        if (isAdmin == true) {
             document.getElementById(`admin${i}`).innerHTML = "Yes";
         } else {
             document.getElementById(`admin${i}`).innerHTML = "No";
         }
     }
+}
+
+
+/**
+ * Generate all users in the HTML-content.
+ * @param {string} decryptUserName 
+ * @param {number} i 
+ * @returns 
+ * 
+ */
+function generateShowAllUsersHTML(decryptUserName, i) {
+    return /*html*/ `
+    <div class="flex-left underline mt-3">
+        <div class=" width-200px">
+            <span><b>Username:</b><br></span> 
+            <span>${decryptUserName}</span>
+        </div>
+        <div class="mb-3 width-200px">
+            <span class=""><b>Admin:</b><br></span> 
+            <span id="admin${i}"></span>
+        </div>      
+        <div class="delete-btn-container">
+            <button onclick="deleteUsers(${i})" class="delete-btn-design me-2">Delete</button>
+        </div>     
+    </div>`
 }
 
 
@@ -96,44 +123,59 @@ async function createUser() {
     let isAdmin = document.getElementById('isAdmin');
     const cryptUserName = crypt('salt', userName.value);
     const cryptPassword = crypt('salt', userPassword.value);
-    let isNewUserCreated = false;
 
     if (isAdmin.checked == false) {
-        let user = {
-            'name': cryptUserName,
-            'password': cryptPassword,
-            'isAdmin': false
-        }
-        users.push(user);
-        await backend.setItem('user', JSON.stringify(users));
-        isNewUserCreated = true
-
+        noAdmin(cryptUserName, cryptPassword);
     } else {
-        let user = {
-            'name': cryptUserName,
-            'password': cryptPassword,
-            'isAdmin': true
-        }
-
-        users.push(user);
-        await backend.setItem('user', JSON.stringify(users));
-        isNewUserCreated = true
-    }
-
-    if(isNewUserCreated = true) {
-        document.getElementById("createdANewUser").classList.remove('d-none');
-        setTimeout(() => {
-            document.getElementById("createdANewUser").classList.add('d-none');
-        }, 1500);
+        admin(cryptUserName, cryptPassword);
     }
 
     userName.value = "";
     userPassword.value = "";
     showAllUsers();
-    isNewUserCreated = false;
 }
 
 
+/**
+ * Add user in wihtout admin.
+ * @param {string} cryptUserName 
+ * @param {string} cryptPassword 
+ * 
+ */
+async function noAdmin(cryptUserName, cryptPassword) {
+    let user = {
+        'name': cryptUserName,
+        'password': cryptPassword,
+        'isAdmin': false
+    }
+    users.push(user);
+    await backend.setItem('user', JSON.stringify(users));
+}
+
+
+
+/**
+ * Add user in admin.
+ * @param {string} cryptUserName 
+ * @param {string} cryptPassword 
+ * 
+ */
+async function admin(cryptUserName, cryptPassword) {
+    let user = {
+        'name': cryptUserName,
+        'password': cryptPassword,
+        'isAdmin': true
+    }
+
+    users.push(user);
+    await backend.setItem('user', JSON.stringify(users));
+}
+
+
+/**
+ * Delete User
+ * @param {number} i 
+ */
 async function deleteUsers(i) {
     users.splice(i, 1);
     await backend.setItem('user', JSON.stringify(users));
@@ -155,13 +197,18 @@ function login() {
 
         if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
             window.location.href = "../addTask.html";
+
         } else {
-            document.getElementById('noUser').classList.remove("d-none");
-            document.getElementById('extras').classList.remove('mt-5');
-            document.getElementById('extras').classList.add('mt-2');
+            setTimeout(() => {
+                document.getElementById('noUser').classList.remove("d-none");
+                document.getElementById('extras').classList.remove('mt-5');
+                document.getElementById('extras').classList.add('mt-2');
+            }, 250);
+
         }
 
         userName.value = "";
         userPassword.value = "";
+
     }
 }
