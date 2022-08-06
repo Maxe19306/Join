@@ -342,7 +342,7 @@ body {
 
 .all-users-container {
     float: right;
-    height: 800px;
+    height: 700px;
     overflow: auto;
 
 }
@@ -355,7 +355,7 @@ body {
     }
 
     .admin-panel-container {
-        overflow: hidden;
+        overflow: unset !important;
     }
 
     .input-container {
