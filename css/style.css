@@ -206,13 +206,100 @@ body {
 
 /* Admin-Panel */
 
+.underline {
+    border-bottom: 2px solid lightgray;
+}
+
 .admin-panel-container {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 100vh;
-    padding: 150px;
+    padding-top: 16px;
+    margin-left: 150px;
+    background-color: #F4F3FB;
 }
 
 .text-design {
     font-size: 40px;
+}
+
+.create-btn-design {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: rgba(30, 49, 144, 0.7);
+    transition: all 225ms ease-in-out;
+}
+
+.delete-btn-design {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: rgba(30, 49, 144, 0.7);
+    transition: all 225ms ease-in-out;
+}
+
+.create-btn-design:hover, .delete-btn-design:hover  {
+    background-color: rgba(30, 49, 144, 1);
+    transition: all 225ms ease-in-out;
+}
+
+.flex-only-center {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-left {
+    display: flex;
+    justify-items: center;
+    
+}
+
+.flex-around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.username-design {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.username-text-design {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#allUsers {
+    display: table-caption;
+}
+
+.width-200px {
+    width: 200px;
+}
+
+.form-floating {
+    width: 270px;
+}
+
+#isAdmin {
+    cursor: pointer;
+}
+
+.alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

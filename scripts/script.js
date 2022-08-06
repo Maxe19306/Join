@@ -10,6 +10,7 @@ let users = [];
 async function loadDataBase() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('user')) || [];
+    showAllUsers();
 }
 
 
@@ -53,24 +54,91 @@ const decrypt = (salt, encoded) => {
 };
 
 
-/* async function createUser() {
-    let userName = document.getElementById('userName');
-    let userPassword = document.getElementById('userPassword');
+function showAllUsers() {
+    let allUsers = document.getElementById('allUsers');
+    allUsers.innerHTML = "";
+
+    for (let i = 0; i < users.length; i++) {
+        const decryptUserName = decrypt('salt', users[i]['name']);
+        const isAdmin = users[i]['isAdmin'];
+
+        allUsers.innerHTML += /*html*/ `
+        <div class="flex-left underline mt-3">
+            <div class=" width-200px">
+                <span><b>Username:</b><br></span> 
+                <span>${decryptUserName}</span>
+            </div>
+            <div class="mb-3 width-200px">
+                <span class=""><b>Admin:</b><br></span> 
+                <span id="admin${i}"></span>
+            </div>      
+            <div>
+                <button onclick="deleteUsers(${i})" class="delete-btn-design">Delete</button>
+            </div>     
+        </div>`
+
+        if(isAdmin == true) {
+            document.getElementById(`admin${i}`).innerHTML = "Yes";
+        } else {
+            document.getElementById(`admin${i}`).innerHTML = "No";
+        }
+    }
+}
+
+
+/**
+ * create a new user
+ * 
+ */
+async function createUser() {
+    let userName = document.getElementById('newUserName');
+    let userPassword = document.getElementById('newUserPassword');
+    let isAdmin = document.getElementById('isAdmin');
     const cryptUserName = crypt('salt', userName.value);
     const cryptPassword = crypt('salt', userPassword.value);
+    let isNewUserCreated = false;
 
-    let user = {
-        'name': cryptUserName,
-        'password': cryptPassword,
-        'isAdmin': true
+    if (isAdmin.checked == false) {
+        let user = {
+            'name': cryptUserName,
+            'password': cryptPassword,
+            'isAdmin': false
+        }
+        users.push(user);
+        await backend.setItem('user', JSON.stringify(users));
+        isNewUserCreated = true
+
+    } else {
+        let user = {
+            'name': cryptUserName,
+            'password': cryptPassword,
+            'isAdmin': true
+        }
+
+        users.push(user);
+        await backend.setItem('user', JSON.stringify(users));
+        isNewUserCreated = true
     }
 
-    users.push(user);
-    await backend.setItem('user', JSON.stringify(users));
+    if(isNewUserCreated = true) {
+        document.getElementById("createdANewUser").classList.remove('d-none');
+        setTimeout(() => {
+            document.getElementById("createdANewUser").classList.add('d-none');
+        }, 1500);
+    }
 
     userName.value = "";
     userPassword.value = "";
-} */
+    showAllUsers();
+    isNewUserCreated = false;
+}
+
+
+async function deleteUsers(i) {
+    users.splice(i, 1);
+    await backend.setItem('user', JSON.stringify(users));
+    showAllUsers();
+}
 
 
 /**
@@ -85,7 +153,7 @@ function login() {
         const decryptUserName = decrypt('salt', users[i]['name']);
         const decryptPassword = decrypt('salt', users[i]['password']);
 
-        if (userName.value == decryptUserName && userPassword.value == decryptPassword ) {
+        if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
             window.location.href = "../addTask.html";
         } else {
             document.getElementById('noUser').classList.remove("d-none");
