@@ -195,3 +195,24 @@ body {
     color: rgb(30, 49, 144);
     transition: all 225ms ease-in-out;
 }
+
+#noUser {
+    color: white;
+    text-align: center;
+    padding: 8px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+/* Admin-Panel */
+
+.admin-panel-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    padding: 150px;
+}
+
+.text-design {
+    font-size: 40px;
+}
