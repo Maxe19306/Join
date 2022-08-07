@@ -1,5 +1,6 @@
 setURL('https://gruppe-289.developerakademie.net/Join/smallest_backend_ever');
 
+
 let users = [];
 let currentUser = [];
 
@@ -176,7 +177,8 @@ async function admin(cryptUserName, cryptPassword) {
 
 /**
  * Delete User
- * @param {number} i 
+ * @param {number} i
+ * 
  */
 async function deleteUsers(i) {
     users.splice(i, 1);
@@ -198,22 +200,39 @@ function login() {
         const decryptPassword = decrypt('salt', users[i]['password']);
 
         if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
-            window.location.href = "../addTask.html";
-            currentUser.push(decryptUserName);
-            saveToLocalStorage();
+            isLogedIn(decryptUserName);
 
         } else {
-            setTimeout(() => {
-                document.getElementById('noUser').classList.remove("d-none");
-                document.getElementById('extras').classList.remove('mt-5');
-                document.getElementById('extras').classList.add('mt-2');
-            }, 250);
-
+            showErrorMessage();
         }
-
     }
+
     userName.value = "";
     userPassword.value = "";
+}
+
+
+/**
+ * function when the correct user loged in.
+ * 
+ */
+function isLogedIn(decryptUserName) {
+    window.location.href = "../addTask.html";
+    currentUser.push(decryptUserName);
+    saveToLocalStorage();
+}
+
+
+/**
+ * Error Message when user does not exist.
+ * 
+ */
+function showErrorMessage() {
+    setTimeout(() => {
+        document.getElementById('noUser').classList.remove("d-none");
+        document.getElementById('extras').classList.remove('mt-5');
+        document.getElementById('extras').classList.add('mt-2');
+    }, 250);
 }
 
 
