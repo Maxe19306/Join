@@ -211,17 +211,16 @@ function login() {
 
         }
 
-        userName.value = "";
-        userPassword.value = "";
     }
+    userName.value = "";
+    userPassword.value = "";
 }
 
 
-function userlogout() {
-    currentUser.splice(1);
-}
-
-
+/**
+ * load loginIn User
+ * 
+ */
 function loadCurrentUser() {
     document.getElementById("currentUser").innerHTML = `${currentUser}`;
     document.getElementById("currentUserResponsive").innerHTML = `${currentUser}`;
