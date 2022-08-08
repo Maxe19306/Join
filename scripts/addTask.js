@@ -1,5 +1,5 @@
-let users = ['avatar1.png', 'avatar2.png', 'avatar3.png']
 let allTask = []
+
 
 function renderAvatarPicker() {
     document.getElementById('avatarPicker').innerHTML = '';
@@ -34,14 +34,15 @@ function addTask() {
         'description': description,
     }
 
-
     allTask.push(task);
 
     let allTaskAsString = JSON.stringify(allTask);
-    localStorage.setItem('allTasks', allTaskAsString);
+    backend.setItem('allTasks', allTaskAsString);
+    console.log(allTask);
 }
 
+
 function loadAllTask() {
-    let allTaskAsString = localStorage.getItem('allTasks');
+    let allTaskAsString = backend.getItem('allTasks');
     allTask = JSON.parse(allTaskAsString);
 }
