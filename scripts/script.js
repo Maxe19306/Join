@@ -81,14 +81,41 @@ function showAllUsers() {
     for (let i = 0; i < users.length; i++) {
         const decryptUserName = decrypt('salt', users[i]['name']);
         const isAdmin = users[i]['isAdmin'];
+        const isChangePassword = users[i]['changePassword'];
 
         allUsers.innerHTML += generateShowAllUsersHTML(decryptUserName, i);
+        adminTrue(isAdmin, i);
+        passwordChanged(isChangePassword, i);
+    }
+}
 
-        if (isAdmin == true) {
-            document.getElementById(`admin${i}`).innerHTML = "Yes";
-        } else {
-            document.getElementById(`admin${i}`).innerHTML = "No";
-        }
+
+/**
+ * 
+ * @param {boolean} isAdmin 
+ * @param {number} i 
+ * 
+ */
+function adminTrue(isAdmin, i) {
+    if (isAdmin == true) {
+        document.getElementById(`admin${i}`).innerHTML = "Yes";
+    } else {
+        document.getElementById(`admin${i}`).innerHTML = "No";
+    }
+}
+
+
+/**
+ * 
+ * @param {boolean} isAdmin 
+ * @param {number} i 
+ * 
+ */
+function passwordChanged(isChangePassword, i) {
+    if (isChangePassword == true) {
+        document.getElementById(`isPasswordChanged${i}`).innerHTML = "Yes";
+    } else {
+        document.getElementById(`isPasswordChanged${i}`).innerHTML = "No";
     }
 }
 
@@ -110,10 +137,18 @@ function generateShowAllUsersHTML(decryptUserName, i) {
         <div class="mb-3 width-200px">
             <span class=""><b>Admin:</b><br></span> 
             <span id="admin${i}"></span>
-        </div>      
+        </div>
+        <div class="mb-3 width-200px">
+            <span class=""><b>Password-Change:</b><br></span> 
+            <span id="isPasswordChanged${i}"></span>
+        </div>
+        <div class="delete-btn-container">
+            <button onclick="changedPwInPanel(${i})" class="delete-btn-design me-2">Change</button>
+        </div>   
         <div class="delete-btn-container">
             <button onclick="deleteUsers(${i})" class="delete-btn-design me-2">Delete</button>
-        </div>     
+        </div>    
+ 
     </div>`
 }
 
@@ -151,7 +186,8 @@ async function noAdmin(cryptUserName, cryptPassword) {
     let user = {
         'name': cryptUserName,
         'password': cryptPassword,
-        'isAdmin': false
+        'isAdmin': false,
+        'changePassword': true
     }
     users.push(user);
     await backend.setItem('user', JSON.stringify(users));
@@ -169,7 +205,8 @@ async function admin(cryptUserName, cryptPassword) {
     let user = {
         'name': cryptUserName,
         'password': cryptPassword,
-        'isAdmin': true
+        'isAdmin': true,
+        'changePassword': true
     }
 
     users.push(user);
@@ -190,6 +227,17 @@ async function deleteUsers(i) {
 
 
 /**
+ * set the changedPassword in the admin-panel = true
+ * @param {number} i 
+ */
+async function changedPwInPanel(i) {
+    users[i]['changePassword'] = true;
+    await backend.setItem('user', JSON.stringify(users));
+    showAllUsers();
+}
+
+
+/**
  * login-Function
  * 
  */
@@ -201,11 +249,16 @@ function login() {
         const decryptUserName = decrypt('salt', users[i]['name']);
         const decryptPassword = decrypt('salt', users[i]['password']);
         const isAdmin = users[i]['isAdmin'];
+        const changePassword = users[i]['changePassword'];
 
-        if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
+        if (userName.value == decryptUserName && userPassword.value == decryptPassword && changePassword == false) {
             isLogedIn(decryptUserName, isAdmin);
 
-        } else {
+        } else if (userName.value == decryptUserName && userPassword.value == decryptPassword && changePassword == true) {
+            document.getElementById('loginScreen').classList.add('d-none');
+            document.getElementById('changePasswordScreen').classList.remove('d-none');
+        }
+        else {
             showErrorMessage();
         }
     }
@@ -242,6 +295,31 @@ function showErrorMessage() {
     }, 250);
 }
 
+
+/**
+ * changed password function, when changedPassword on true
+ * 
+ */
+async function changePassword() {
+    let userName = document.getElementById('checkUserName');
+    let userPassword = document.getElementById('oldPassword');
+    let newUserPassword = document.getElementById('newUserPassword');
+    const cryptPassword = crypt('salt', newUserPassword.value);
+
+    for (let i = 0; i < users.length; i++) {
+        const decryptUserName = decrypt('salt', users[i]['name']);
+        const decryptPassword = decrypt('salt', users[i]['password']);
+
+        if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
+            users[i]['password'] = cryptPassword;
+            users[i]['changePassword'] = false;
+        }
+    }
+    await backend.setItem('user', JSON.stringify(users));
+    document.getElementById('loginScreen').classList.remove('d-none');
+    document.getElementById('changePasswordScreen').classList.add('d-none');
+    document.getElementById('noUser').classList.add("d-none");
+}
 
 /**
  * load loginIn User
