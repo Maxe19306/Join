@@ -18,8 +18,8 @@
 <body onload="loadDataBase()" class="flex-center">
     <img class="img-design" src="img/background.jpg" alt="">
     <div class="login-container">
-        <h1 class="mb-3"><b>Einloggen</b></h1>
-        <form onsubmit="login(); return false;" class="form-design">
+        <h1 class="mb-3"><b>Login</b></h1>
+        <form id="loginScreen" onsubmit="login(); return false;" class="form-design">
             <div class="form-floating mb-3">
                 <input id="userName" type="text" class="form-control" id="floatingInput" required>
                 <label for="floatingInput">Username</label>
@@ -28,8 +28,23 @@
                 <input id="userPassword" type="password" class="form-control" id="floatingPassword" value="" required>
                 <label for="floatingPassword">Password</label>
             </div>
-            <button class="login-btn-design"><b>Einloggen</b></button>
+            <button class="login-btn-design"><b>Login</b></button>
             <span id="noUser" class="mb-3 mt-3 d-none ">This user does not exist!</span>
+        </form>
+        <form id="changePasswordScreen" onsubmit="changePassword(); return false;" class="form-design d-none">
+            <div class="form-floating mb-3">
+                <input id="checkUserName" type="text" class="form-control" id="floatingInput" required>
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="oldPassword" type="password" class="form-control" id="floatingPassword" value="" required>
+                <label for="floatingPassword">Old Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="newUserPassword" type="password" class="form-control" id="floatingPassword" value="" required>
+                <label for="floatingPassword">New Password</label>
+            </div>
+            <button class="login-btn-design"><b>Change Password</b></button>
         </form>
         <div id="extras" class="flex-center mt-5">
             <span class="extra me-4">Datenschutz</span>

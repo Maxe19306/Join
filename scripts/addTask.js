@@ -1,10 +1,10 @@
+let CurrentUsers = ['avatar1.png', 'avatar2.png', 'avatar3.png']
 let allTask = []
-
 
 function renderAvatarPicker() {
     document.getElementById('avatarPicker').innerHTML = '';
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
+    for (let i = 0; i < CurrentUsers.length; i++) {
+        const user = CurrentUsers[i];
         document.getElementById('avatarPicker').innerHTML += `<img id="user-${i}" src="img/avatars/${user}" class="avatar" onclick="selectUser(${i})">`
 
     }
@@ -34,13 +34,12 @@ function addTask() {
         'description': description,
     }
 
+
     allTask.push(task);
 
     let allTaskAsString = JSON.stringify(allTask);
     backend.setItem('allTasks', allTaskAsString);
-    console.log(allTask);
 }
-
 
 function loadAllTask() {
     let allTaskAsString = backend.getItem('allTasks');

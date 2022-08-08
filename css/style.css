@@ -120,25 +120,6 @@ body {
         margin-top: 100px;
         margin-left: 0 !important;
     }
-
-    .flex-left {
-        display: inline-grid !important;
-        justify-items: center;
-        text-align: center;
-    }
-
-    .flex-left button {
-        margin: 0 !important;
-    }
-
-    .flex-around {
-        display: unset !important;
-    }
-
-    .delete-btn-container {
-        margin-bottom: 1rem !important;
-    }
-
 }
 
 
@@ -347,7 +328,33 @@ body {
 
 }
 
-@media (max-width: 1035px) {
+
+@media (max-width: 1000px) {
+    .admin-panel-container {
+        margin-top: 100px;
+    }
+
+    .flex-left {
+        display: inline-grid !important;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .flex-left button {
+        margin: 0 !important;
+    }
+
+    .flex-around {
+        display: unset !important;
+    }
+
+    .delete-btn-container {
+        margin-bottom: 1rem !important;
+    }
+
+}
+
+@media (max-width: 1315px) {
     .admin-panel-inline-container {
         display: flex;
         align-items: center;

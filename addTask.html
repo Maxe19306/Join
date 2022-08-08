@@ -14,9 +14,8 @@
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="templates/header.css">
     <link rel="stylesheet" href="css/addtask.css">
-
     <script src="/scripts/mini_backend.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="/scripts/script.js"></script>
     <script src="scripts/addTask.js"></script>
     <script src="templates/includeHTML.js"></script>
     <script src="templates/header.js"></script>
@@ -24,7 +23,7 @@
 
 
 
-<body onload=" loadDataBase(), init()" class="d-flex">
+<body onload="init(); loadDataBase();" class="d-flex">
 
     <div class="header-include-html" include-html="templates/header.html">
     </div>
@@ -50,18 +49,18 @@
                 <div class="inputFielder">
                     <h2 class="w-50 fs-5 fw-bold text-primary">Categorie</h2>
                     <select id="categorie" size="1">
-                <option>Sale</option>
-                <option>Product</option>
-                <option>Marketing</option>
-              </select>
+                        <option>Sale</option>
+                        <option>Product</option>
+                        <option>Marketing</option>
+                    </select>
                 </div>
                 <div class="inputFielder">
                     <h2 class="w-50 fs-5 fw-bold text-primary">URGENCY</h2>
                     <select id="prio" size="1">
-                <option>HIGH</option>
-                <option>MIDDLE</option>
-                <option>LOW</option>
-              </select>
+                        <option>HIGH</option>
+                        <option>MIDDLE</option>
+                        <option>LOW</option>
+                    </select>
                 </div>
                 <div class="inputFielder">
                     <h2 class="w-50 fs-5 fw-bold text-primary">DESCRIPTION</h2>
