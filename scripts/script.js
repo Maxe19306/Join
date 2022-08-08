@@ -14,6 +14,7 @@ async function loadDataBase() {
     users = JSON.parse(backend.getItem('user')) || [];
     loadFromLocalStorage();
     loadCurrentUser();
+    loadAllTask();
 }
 
 
@@ -257,8 +258,7 @@ function login() {
         } else if (userName.value == decryptUserName && userPassword.value == decryptPassword && changePassword == true) {
             document.getElementById('loginScreen').classList.add('d-none');
             document.getElementById('changePasswordScreen').classList.remove('d-none');
-        }
-        else {
+        } else {
             showErrorMessage();
         }
     }
@@ -355,8 +355,8 @@ function userLogout() {
 
 
 /**
-* Localstorage for the current user login
-*/
+ * Localstorage for the current user login
+ */
 function saveToLocalStorage() {
     let currentUserAsText = JSON.stringify(currentUser);
     localStorage.setItem('currentUser', currentUserAsText);
