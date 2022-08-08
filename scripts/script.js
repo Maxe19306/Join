@@ -12,6 +12,8 @@ let currentUser = [];
 async function loadDataBase() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('user')) || [];
+    loadFromLocalStorage();
+    loadCurrentUser();
 }
 
 
@@ -198,9 +200,10 @@ function login() {
     for (let i = 0; i < users.length; i++) {
         const decryptUserName = decrypt('salt', users[i]['name']);
         const decryptPassword = decrypt('salt', users[i]['password']);
+        const isAdmin = users[i]['isAdmin'];
 
         if (userName.value == decryptUserName && userPassword.value == decryptPassword) {
-            isLogedIn(decryptUserName);
+            isLogedIn(decryptUserName, isAdmin);
 
         } else {
             showErrorMessage();
@@ -216,9 +219,13 @@ function login() {
  * function when the correct user loged in.
  * 
  */
-function isLogedIn(decryptUserName) {
+function isLogedIn(decryptUserName, isAdmin) {
     window.location.href = "../addTask.html";
-    currentUser.push(decryptUserName);
+    let NewcurrentUser = {
+        'name': decryptUserName,
+        'isAdmin': isAdmin
+    }
+    currentUser.push(NewcurrentUser);
     saveToLocalStorage();
 }
 
@@ -241,8 +248,31 @@ function showErrorMessage() {
  * 
  */
 function loadCurrentUser() {
-    document.getElementById("currentUser").innerHTML = `${currentUser}`;
-    document.getElementById("currentUserResponsive").innerHTML = `${currentUser}`;
+    for (let i = 0; i < currentUser.length; i++) {
+        const currentUserName = currentUser[i]['name'];
+        const currentUserAdmin = currentUser[i]['isAdmin'];
+        if (currentUser.length > 0) {
+            document.getElementById("currentUser").innerHTML = `${currentUserName}`;
+            document.getElementById("currentUserResponsive").innerHTML = `${currentUserName}`;
+        }
+        if (currentUserName && currentUserAdmin == true) {
+            document.getElementById("adminPanel").classList.remove("d-none");
+            document.getElementById("adminPanelResponsive").classList.remove("d-none");
+        } else {
+            document.getElementById("adminPanel").classList.add("d-none");
+            document.getElementById("adminPanelResponsive").classList.add("d-none");
+        }
+    }
+}
+
+
+/**
+ * userLogout and delete the Name from the Localstorage.
+ * 
+ */
+function userLogout() {
+    currentUser.splice(0);
+    saveToLocalStorage();
 }
 
 

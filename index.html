@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="templates/header.css">
+    <script src="/scripts/mini_backend.js"></script>
+    <script src="/scripts/script.js"></script>
     <script src="templates/includeHTML.js"></script>
     <script src="templates/header.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init(); loadDataBase();">
     <div class="board">
         <div class="header-include-html" include-html="templates/header.html">
         </div>
