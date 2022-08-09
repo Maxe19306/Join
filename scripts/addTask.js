@@ -1,5 +1,5 @@
-let CurrentUsers = ['avatar1.png', 'avatar2.png', 'avatar3.png']
-let allTask = []
+let CurrentUsers = ['avatar1.png', 'avatar2.png', 'avatar3.png'];
+let allTask = [];
 
 function renderAvatarPicker() {
     document.getElementById('avatarPicker').innerHTML = '';
@@ -17,11 +17,6 @@ function selectUser(i) {
     user.classList.toggle('avatar-selected');
 }
 
-function moin() {
-    let moin = decrypt('salt', users[0]['name']);
-    console.log(moin)
-
-}
 
 function addTask() {
     let title = document.getElementById('title').value;

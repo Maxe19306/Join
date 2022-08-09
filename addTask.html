@@ -17,13 +17,14 @@
     <script src="/scripts/mini_backend.js"></script>
     <script src="/scripts/script.js"></script>
     <script src="scripts/addTask.js"></script>
+    <script src="scripts/board.js"></script>
     <script src="templates/includeHTML.js"></script>
     <script src="templates/header.js"></script>
 </head>
 
 
 
-<body onload="init(); loadDataBase(); loadAllTask()" class="d-flex">
+<body onload="init(); loadDataBase(); loadAllTask();" class="d-flex">
 
     <div class="header-include-html" include-html="templates/header.html">
     </div>
@@ -72,7 +73,7 @@
                     <div id="avatarPicker"></div>
 
                     <div class="buttons"> <button class="cancelButton">CANCEL</button>
-                        <button class="createButton">CREATE TASK</button>
+                        <button onclick="addTask()" class="createButton">CREATE TASK</button>
                     </div>
 
                 </div>
@@ -80,6 +81,7 @@
         </div>
 
         <button onclick="moin()">hallo</button>
+        <div id="test"></div>
     </div>
 
 </body>
