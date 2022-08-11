@@ -30,6 +30,10 @@ body {
     align-items: center;
 }
 
+.object-fit {
+    object-fit: contain;
+}
+
 .mr-10 {
     margin-right: 10px;
 }

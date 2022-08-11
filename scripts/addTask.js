@@ -24,7 +24,7 @@ function addTask() {
     let categorie = document.getElementById('categorie').value;
     let prio = document.getElementById('prio').value;
     let description = document.getElementById('description').value;
-    let creator = currentUser[0]['name'];
+    let creator = currentUser;
 
     let task = {
         'title': title,
@@ -33,10 +33,13 @@ function addTask() {
         'prio': prio,
         'description': description,
         'creator': creator,
+        'createdAt': new Date().getTime(),
+        'state': 'todo'
     }
 
 
     allTask.push(task);
+    console.log('gerade erstellt', allTask)
 
     let allTaskAsString = JSON.stringify(allTask);
     backend.setItem('allTasks', allTaskAsString);
