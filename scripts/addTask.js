@@ -41,9 +41,15 @@ function addTask() {
     allTask.push(task);
     console.log('gerade erstellt', allTask)
 
+    pushAllTask();
+}
+
+
+function pushAllTask() {
     let allTaskAsString = JSON.stringify(allTask);
     backend.setItem('allTasks', allTaskAsString);
 }
+
 
 function loadAllTask() {
     let allTaskAsString = backend.getItem('allTasks');

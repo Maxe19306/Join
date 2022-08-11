@@ -1,15 +1,6 @@
 setURL('https://gruppe-289.developerakademie.net/Join/smallest_backend_ever');
 
 
-let title;
-let date;
-let prio;
-let categorie;
-let description;
-let creator;
-let currentDraggedElement;
-
-
 async function loadBoard() {
     await downloadFromServer();
     console.log('tasks', allTask);
@@ -19,11 +10,11 @@ async function loadBoard() {
 
 function loadAllFilter() {
     let currentToDo = allTask.filter(t => t['state'] == 'todo');
-    let currenInProgress = allTask.filter(t => t['state'] == 'in-progress');
+    let currenInProgress = allTask.filter(t => t['state'] == 'inProgress');
     let currentTesting = allTask.filter(t => t['state'] == 'testing');
     let currentDone = allTask.filter(t => t['state'] == 'done');
     document.getElementById('todo').innerHTML= '';
-    document.getElementById('in-progress').innerHTML= '';
+    document.getElementById('inProgress').innerHTML= '';
     document.getElementById('testing').innerHTML= '';
     document.getElementById('done').innerHTML= '';
     filterTodoTask(currentToDo);
@@ -35,7 +26,8 @@ function loadAllFilter() {
 function filterTodoTask(currentToDo) {
     for (let i = 0; i < currentToDo.length; i++) {
         let index = currentToDo[i];
-        document.getElementById('todo').innerHTML += htmlTicket(i, index);
+        type = 'todo';
+        document.getElementById('todo').innerHTML += htmlTicket(i, index, type);
     }
 }
 
@@ -43,7 +35,8 @@ function filterTodoTask(currentToDo) {
 function filterInProgress(currenInProgress) {
     for (let i = 0; i < currenInProgress.length; i++) {
         let index = currenInProgress[i];
-        document.getElementById('in-progress').innerHTML += htmlTicket(i, index);
+        type = 'inProgress';
+        document.getElementById('inProgress').innerHTML += htmlTicket(i, index, type);
     }
 }
 
@@ -51,7 +44,8 @@ function filterInProgress(currenInProgress) {
 function filterTesting(currentTesting) {
     for (let i = 0; i < currentTesting.length; i++) {
         let index = currentTesting[i];
-        document.getElementById('testing').innerHTML += htmlTicket(i, index);
+        type = 'testing';
+        document.getElementById('testing').innerHTML += htmlTicket(i, index, type);
     }
 }
 
@@ -59,33 +53,25 @@ function filterTesting(currentTesting) {
 function filterInProgress(currentDone) {
     for (let i = 0; i < currentDone.length; i++) {
         let index = currentDone[i];
-        document.getElementById('done').innerHTML += htmlTicket(i, index);
+        type = 'done';
+        document.getElementById('done').innerHTML += htmlTicket(i, index, type);
     }
 }
-
-/*
-function renderBoard(i, array, ticket) {
-        title = array[i]['title'];
-        date = array[i]['date'];
-        prio = array[i]['prio'];
-        categorie = array[i]['categorie'];
-        description = array[i]['description'];
-        creator = array[i]['creator'];
-        id = array[i]['id'];
-        ticket.innerHTML += htmlTicket(i);
-}*/
 
 
 function moveto(i) {
     let array = allTask.find(t => t.createdAt === currentDraggedElement);
+    console.log('array', array)
     array['state'] = i;
     loadAllFilter();
 }
 
 
-function deleteTaskOnBoard(i) { 
-    backend.deleteItem('allTask', i);
-    renderBoard();
+async function deleteTaskOnBoard(index) {
+    allTask.splice(index, 1); 
+    await backend.deleteItem('allTask');
+    loadAllFilter();
+    pushAllTask();
 }
 
 
@@ -99,9 +85,9 @@ function allowDrop(ev) {
 }
 
 
-function htmlTicket(i, index) {
+function htmlTicket(i, index, type) {
     return /*html*/`
-        <div draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
+        <div id="${i}${type}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
             <div class="ticket word-wrap">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
@@ -137,7 +123,7 @@ function htmlTicket(i, index) {
                         ${index['prio']}
                     </span>
                 </div>
-                <button onclick="deleteTaskOnBoard()">
+                <button onclick="deleteTaskOnBoard(${index, i})">
                     Löschen
                 </button>
             </div>
