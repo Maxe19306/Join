@@ -8,7 +8,7 @@ async function loadBoard() {
 }
 
 
-function loadAllFilter() {
+async function loadAllFilter() {
     let currentToDo = allTask.filter(t => t['state'] == 'todo');
     let currenInProgress = allTask.filter(t => t['state'] == 'inProgress');
     let currentTesting = allTask.filter(t => t['state'] == 'testing');
@@ -26,8 +26,7 @@ function loadAllFilter() {
 function filterTodoTask(currentToDo) {
     for (let i = 0; i < currentToDo.length; i++) {
         let index = currentToDo[i];
-        type = 'todo';
-        document.getElementById('todo').innerHTML += htmlTicket(i, index, type);
+        document.getElementById('todo').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -35,8 +34,7 @@ function filterTodoTask(currentToDo) {
 function filterInProgress(currenInProgress) {
     for (let i = 0; i < currenInProgress.length; i++) {
         let index = currenInProgress[i];
-        type = 'inProgress';
-        document.getElementById('inProgress').innerHTML += htmlTicket(i, index, type);
+        document.getElementById('inProgress').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -44,8 +42,7 @@ function filterInProgress(currenInProgress) {
 function filterTesting(currentTesting) {
     for (let i = 0; i < currentTesting.length; i++) {
         let index = currentTesting[i];
-        type = 'testing';
-        document.getElementById('testing').innerHTML += htmlTicket(i, index, type);
+        document.getElementById('testing').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -53,17 +50,16 @@ function filterTesting(currentTesting) {
 function filterInProgress(currentDone) {
     for (let i = 0; i < currentDone.length; i++) {
         let index = currentDone[i];
-        type = 'done';
-        document.getElementById('done').innerHTML += htmlTicket(i, index, type);
+        document.getElementById('done').innerHTML += htmlTicket(i, index);
     }
 }
 
 
 function moveto(i) {
     let array = allTask.find(t => t.createdAt === currentDraggedElement);
-    console.log('array', array)
     array['state'] = i;
     loadAllFilter();
+    pushAllTask();
 }
 
 
@@ -85,15 +81,15 @@ function allowDrop(ev) {
 }
 
 
-function htmlTicket(i, index, type) {
+function htmlTicket(i, index) {
     return /*html*/`
-        <div id="${i}${type}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
+        <div id="${i}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
             <div class="ticket word-wrap">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
                         <img class="img-25 mr-10 object-fit" src="img/placeholder.png" alt="">
                         <div>
-                           Name 
+                           ${currentUser[0]['name']} 
                         </div>
                     </div>
                     <div class="d-flex align-center">
