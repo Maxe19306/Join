@@ -35,8 +35,7 @@ function loadAllFilter() {
 function filterTodoTask(currentToDo) {
     for (let i = 0; i < currentToDo.length; i++) {
         let index = currentToDo[i];
-        let typeToDo = 'todo';
-        document.getElementById('todo').innerHTML += htmlTicket(i, index, typeToDo);
+        document.getElementById('todo').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -44,8 +43,7 @@ function filterTodoTask(currentToDo) {
 function filterInProgress(currenInProgress) {
     for (let i = 0; i < currenInProgress.length; i++) {
         let index = currenInProgress[i];
-        let typeInProgress = 'in-progress';
-        document.getElementById('in-progress').innerHTML += htmlTicket(i, index, typeInProgress);
+        document.getElementById('in-progress').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -53,8 +51,7 @@ function filterInProgress(currenInProgress) {
 function filterTesting(currentTesting) {
     for (let i = 0; i < currentTesting.length; i++) {
         let index = currentTesting[i];
-        let typeTesting = 'testing';
-        document.getElementById('testing').innerHTML += htmlTicket(i, index, typeTesting);
+        document.getElementById('testing').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -62,8 +59,7 @@ function filterTesting(currentTesting) {
 function filterInProgress(currentDone) {
     for (let i = 0; i < currentDone.length; i++) {
         let index = currentDone[i];
-        let typeDone = 'done';
-        document.getElementById('done').innerHTML += htmlTicket(i, index, typeDone);
+        document.getElementById('done').innerHTML += htmlTicket(i, index);
     }
 }
 
@@ -81,9 +77,9 @@ function renderBoard(i, array, ticket) {
 
 
 function moveto(i) {
-    let array = allTask.find(t => t.creator === currenDraggedElement);
+    let array = allTask.find(t => t.createdAt === currentDraggedElement);
     array['state'] = i;
-    htmlTicket();
+    loadAllFilter();
 }
 
 
@@ -93,8 +89,8 @@ function deleteTaskOnBoard(i) {
 }
 
 
-function startdragging(i) {
-    currentDraggedElement = i;
+function startdragging(id) {
+    currentDraggedElement = id;
 }
 
 
@@ -103,9 +99,9 @@ function allowDrop(ev) {
 }
 
 
-function htmlTicket(i, index, type) {
+function htmlTicket(i, index) {
     return /*html*/`
-        <div id="${i}${type}" draggable="true" ondragstart="startdragging(${index['creator']})" class="ticket-color">
+        <div draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
             <div class="ticket word-wrap">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
