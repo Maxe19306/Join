@@ -42,20 +42,22 @@ body {
     margin-top: 10px;
 }
 
+/*Colors*/
+
 .bg-blue {
     background-color: rgb(113, 149, 254);
 }
 
-.HIGH {
+.Product {
+    background-color: rgb(204, 131, 223);
+}
+
+.Marketing {
     background-color: rgb(252, 176, 118);
 }
 
-.MIDDLE {
-    background-color: rgb(255 231 97 / 84%);
-}
-
-.LOW {
-    background-color: rgba(65, 170, 30, 0.5);
+.Sale {
+    background-color: rgb(109, 161, 122);
 }
 
 /* Image */

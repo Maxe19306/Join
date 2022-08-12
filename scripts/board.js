@@ -93,7 +93,7 @@ function hightlight(id) {
 
 function htmlTicket(i, index) {
     return /*html*/`
-        <div id="${i} ${index['state']}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="${index['prio']} ticket-color cursorMove">
+        <div id="${i} ${index['state']}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="${index['categorie']} ticket-color cursorMove">
             <div class="ticket word-wrap">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-center">
