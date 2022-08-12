@@ -75,17 +75,16 @@ let allTask = [];
 let SelectedEmployee;
 let SelectedEmployeeEmail;
 
-function Mitarbeiter() {
+function EmployeePicker() {
     document.getElementById('avatarPicker').innerHTML = '';
     for (let i = 0; i < CurrentUsers[0].length; i++) {
         const user = CurrentUsers[0][i];
-
-        document.getElementById('avatarPicker').innerHTML += /*html*/ `<option id="MA${i}" onclick="blub(${i})"> ${user['name']} </option>`;
+        document.getElementById('avatarPicker').innerHTML += /*html*/ `<option id="MA${i}" onclick="SelectEmployee(${i})"> ${user['name']} </option>`;
     }
 
 }
 
-function blub(i) {
+function SelectEmployee(i) {
     SelectedEmployee = '';
     SelectedEmployeeEmail = '';
     SelectedEmployee = document.getElementById(`MA${i}`).innerHTML;
@@ -95,16 +94,11 @@ function blub(i) {
     document.getElementById('createdButton').classList.add('createButtonhover');
 }
 
-function hallo() {
+function updateCurrentUsers() {
     CurrentUsers.splice(CurrentUsers);
     let hallo = document.getElementById('categorie').value;
     CurrentUsers.push(allEmployees[`${hallo}`]);
     console.log(CurrentUsers);
-}
-
-function viewName(i) {
-    document.getElementById('AssignedName').innerHTML += `${CurrentUsers[0][i]['name']}`;
-    selectUser(i);
 }
 
 function addTask() {
