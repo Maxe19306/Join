@@ -52,7 +52,7 @@ select {
 .createButton {
     border: none;
     border-radius: 10px;
-    background-color: blue;
+    background-color: rgb(80, 80, 252);
     color: white;
     margin-left: 10px;
     margin-right: 10px;
@@ -60,8 +60,8 @@ select {
     width: 120px;
 }
 
-.createButton:hover {
-    background-color: rgb(80, 80, 252);
+.createButtonhover:hover {
+    background-color: blue;
 }
 
 .cancelButton {
