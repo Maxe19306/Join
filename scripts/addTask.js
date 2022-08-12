@@ -107,7 +107,7 @@ function addTask() {
     let categorie = document.getElementById('categorie').value;
     let prio = document.getElementById('prio').value;
     let description = document.getElementById('description').value;
-    let creator = currentUser;
+    let creator = currentUser[0]['name'];
 
     let task = {
         'title': title,

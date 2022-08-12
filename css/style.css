@@ -46,6 +46,18 @@ body {
     background-color: rgb(113, 149, 254);
 }
 
+.HIGH {
+    background-color: rgb(252, 176, 118);
+}
+
+.MIDDLE {
+    background-color: rgb(255 231 97 / 84%);
+}
+
+.LOW {
+    background-color: rgba(65, 170, 30, 0.5);
+}
+
 /* Image */
 .img-20 {
     width: 20px;
