@@ -1,4 +1,6 @@
-let CurrentUsers = ['avatar1.png', 'avatar2.png', 'avatar3.png'];
+let CurrentUsers = [
+    'avatar1.png', 'avatar2.png', 'avatar3.png'
+];
 let allTask = [];
 
 function renderAvatarPicker() {
@@ -36,6 +38,8 @@ function addTask() {
     }
 
 
+
+
     allTask.push(task);
 
     let allTaskAsString = JSON.stringify(allTask);
@@ -45,4 +49,5 @@ function addTask() {
 function loadAllTask() {
     let allTaskAsString = backend.getItem('allTasks');
     allTask = JSON.parse(allTaskAsString);
+    renderAvatarPicker();
 }
