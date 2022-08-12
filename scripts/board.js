@@ -20,7 +20,7 @@ async function loadAllFilter() {
     filterTodoTask(currentToDo);
     filterInProgress(currenInProgress);
     filterTesting(currentTesting);
-    filterInProgress(currentDone);
+    filterDone(currentDone);
 }
 
 function filterTodoTask(currentToDo) {
@@ -47,7 +47,7 @@ function filterTesting(currentTesting) {
 }
 
 
-function filterInProgress(currentDone) {
+function filterDone(currentDone) {
     for (let i = 0; i < currentDone.length; i++) {
         let index = currentDone[i];
         document.getElementById('done').innerHTML += htmlTicket(i, index);
@@ -83,7 +83,7 @@ function allowDrop(ev) {
 
 function htmlTicket(i, index) {
     return /*html*/`
-        <div id="${i}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
+        <div id="${i} ${index['state']}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="ticket-color">
             <div class="ticket word-wrap">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
