@@ -1,15 +1,40 @@
 setURL('https://gruppe-289.developerakademie.net/Join/smallest_backend_ever');
 
+
 let currentDraggedElement;
 
+
+/**
+ * Loads all tasks that have been created.
+ * @function loadBoard()
+ * @function downloadFromServer()
+ * @function loadAllTask()
+ * @function loadAllFilter()
+ */
 async function loadBoard() {
     await downloadFromServer();
     loadAllTask();
-    console.log('tasks', allTask);
     loadAllFilter();
 }
 
 
+/**
+ * Here all the Tasks that have been created are filtered according to the state.
+ * After that all containers with the id="todo, inProgress, testing, done" will be emptied.
+ * Finally, the parameters are passed on to the respective functions.
+ * 
+ * @function filterTodoTask() 
+ * @param {string} curentToDo
+ * 
+ * @function filterInProgress() 
+ * @param {string} currenInProgress
+ * 
+ * @function filterTesting() 
+ * @param {string} currentTesting
+ * 
+ * @function filterDone() 
+ * @param {string} currentDone
+ */
 function loadAllFilter() {
     let currentToDo = allTask.filter(t => t['state'] == 'todo');
     let currenInProgress = allTask.filter(t => t['state'] == 'inProgress');
@@ -25,6 +50,20 @@ function loadAllFilter() {
     filterDone(currentDone);
 }
 
+
+/**
+ * In this four filter functions all parameters are read out and assigned to the correct Id.
+ * @function htmlTicket() 
+ * @param {string} index
+ * @param {number} i 
+ * // i = what task z.b number 5. // index = A whole task.
+ * 
+ * The function trashClose() makes the Icons with the respective Id's invisible.
+ * Id's = 'todo' 'inProgress' 'testing' // With the id 'done' the icons are displayed.
+ * @function trashClose() 
+ * @param {string} index
+ * @param {number} i
+ */
 function filterTodoTask(currentToDo) {
     for (let i = 0; i < currentToDo.length; i++) {
         let index = currentToDo[i];
@@ -62,9 +101,22 @@ function filterDone(currentDone) {
 }
 
 
+/**
+ * The function deleteTaskOnBoard() finds out all parameters in allTask. At the position .createdAt is tested.
+ * If the test passes, the array is deleted at exactly the right place, at the first place.
+ * @function deleteTaskOnBoard()
+ * @param {number} i
+ * 
+ * With the line '' the array is deleted on the backend.
+ * After that everything is filtered again and rendered with the function loadAllFilter().
+ * @function loadAllFilter()
+ * 
+ * The pushAllTask() function will update everything that was changed again.
+ * @function pushAllTask()
+ */
 async function deleteTaskOnBoard(i) {
     let deleteTask = allTask.findIndex(obj => obj.createdAt == i);
-    console.log('findindex', deleteTask);
+    console.log('findindex',i ,deleteTask);
     allTask.splice(deleteTask, 1);
     await backend.deleteItem('allTask');
     loadAllFilter();
@@ -72,6 +124,18 @@ async function deleteTaskOnBoard(i) {
 }
 
 
+/**
+ * The two functions trashOpen and trashClose read the correct parameters out of the array allTask.
+ * The parameters are then passed to the Id trashAktiv. 
+ * @function trashOpen()
+ * @function trashClose()
+ * @param {string} index
+ * @param {number} i
+ * 
+ * Finally, the icons are added or removed from exactly the right tickets.
+ * @classList .remove(`d-none`)
+ * @classList .add(`d-none`)
+ */
 function trashOpen(i, index) {
     document.getElementById(`trashAktiv ${i} ${index['state']}`).classList.remove(`d-none`);
 }
@@ -82,6 +146,14 @@ function trashClose(i, index) {
 }
 
 
+/**
+ * In AllTask all parameters in the .createdAt area are compared with currentDraggedElement.  
+ * If the test passes, the Id's are passed from the 'board.html' file with the moveto() function.
+ * @function ondrop="moveto()"
+ * @param {number} i = z.b The Id 'inProgress'
+ * Is passed with =
+ * //array['state'] = i//
+*/
 function moveto(i) {
     let array = allTask.find(t => t.createdAt === currentDraggedElement);
     array['state'] = i;
@@ -89,17 +161,38 @@ function moveto(i) {
     pushAllTask();
 }
 
-
+/**
+ * The function startdragging() fetches with the ondragstart="" method
+ * on the htmlTicket() template to get the correct parameter (Index['createdAt']). 
+ * @function startdragging()
+ * @param {number} id = .createdAt
+ */
 function startdragging(id) {
     currentDraggedElement = id;
 }
 
 
+/**
+ * allowDrop() gives the possibility to move the elements.
+ * @function allowDrop()
+ * @function preventDefault()
+ * @param {ev} 
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 
+/**
+ * Renders all tickets with all current parameters.
+ * @function htmlTicket()
+ * @function ondragstart="startdragging()"
+ * @function onclick="deleteTaskOnBoard()"
+ * @param {number} currentDraggedElement
+ * @param {number} i 
+ * @param {string} index 
+ * @returns 
+ */
 function htmlTicket(i, index) {
     return /*html*/`
         <div id="${i} ${index['state']}" draggable="true" ondragstart="startdragging(${index['createdAt']})" class="${index['categorie']} ticket-color cursorMove">
@@ -142,8 +235,19 @@ function htmlTicket(i, index) {
                             </span>
                         </div>
                     </div>
-                    <div>
-                        created by: ${index['creator']} ${index['SelectedEmployee']}
+                    <div class="eamMembers-div">
+                        <span>
+                            <b>
+                                Created by:
+                            </b> 
+                            ${index['creator']}
+                        </span>
+                        <span>
+                            <b>
+                                Teammembers:
+                            </b> 
+                            ${index['SelectedEmployee']}
+                        </span>
                     </div>
                 </div>
             </div>

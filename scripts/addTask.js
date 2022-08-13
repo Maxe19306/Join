@@ -8,8 +8,8 @@ let CurrentUsers = [
             'e-mail': 'Petermaurer@fakeSale.com',
         }, {
 
-            'name': 'Thomas Sale',
-            'e-mail': 'ThomasSale@fakeSale.com',
+            'name': 'Thomas',
+            'e-mail': 'Thomas_ketler@web.de',
         },
         {
             'name': 'Ulrike Sale',
@@ -71,9 +71,12 @@ let allEmployees = {
     ]
 
 }
+
+
 let allTask = [];
 let SelectedEmployee;
 let SelectedEmployeeEmail;
+
 
 function EmployeePicker() {
     document.getElementById('avatarPicker').innerHTML = '';
@@ -83,6 +86,7 @@ function EmployeePicker() {
     }
 
 }
+
 
 function SelectEmployee(i) {
     SelectedEmployee = '';
@@ -94,12 +98,14 @@ function SelectEmployee(i) {
     document.getElementById('createdButton').classList.add('createButtonhover');
 }
 
+
 function updateCurrentUsers() {
     CurrentUsers.splice(CurrentUsers);
     let hallo = document.getElementById('categorie').value;
     CurrentUsers.push(allEmployees[`${hallo}`]);
     console.log(CurrentUsers);
 }
+
 
 function addTask() {
     let title = document.getElementById('title').value;
@@ -132,6 +138,7 @@ function blankForm() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
 }
+
 
 function pushAllTask() {
     let allTaskAsString = JSON.stringify(allTask);

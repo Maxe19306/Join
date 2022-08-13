@@ -1,13 +1,11 @@
-.header-include-html {
+/*Section board.html*/
+
+.board {
+    display: flex;
+}
+
+.header-include-html { 
     width: 150px;
-}
-
-.div-testing-Done {
-    display: flex;
-}
-
-.div-todo-progress {
-    display: flex;
 }
 
 .all-boxes {
@@ -17,23 +15,30 @@
     margin-top: 50px;
 }
 
-.board {
+.div-todo-progress {
     display: flex;
 }
 
-.board-box {
+.div-testing-Done {
+    display: flex;
+}
+
+.board-box { /*One Complete department*/
     width: 350px;
     padding-left: 14px;
     padding-right: 14px;
     margin-bottom: 8px;
 }
 
-.board-content {
+.board-content { /*Board-Content Departments*/
     background-color: rgb(244, 243, 251);
     overflow: auto;
     height: 800px;
     padding: 20px;
+    border-radius: 5px;
 }
+
+/*Section board.js/function htmlTicket()*/
 
 .ticket-color {
     border-radius: 10px;
@@ -45,26 +50,9 @@
     margin-bottom: 20px;
     font-size: 18px;
     background-color: white;
-}
-
-.drag-area-hightlight {
-    background-color: rgb(255, 255, 255);
-}
-
-.category-board {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    width: 100px;
-    margin-top: 10px;
-    border-radius: 5px;
-    color: #F4F3FB;
-    font-weight: 600;
-}
-
-.section-bottum {
-    flex-direction: column;
+    box-shadow: 6px 5px 8px 0px rgba(161,154,154,0.8);
+    -webkit-box-shadow: 6px 5px 8px 0px rgba(161,154,154,0.8);
+    -moz-box-shadow: 6px 5px 8px 0px rgba(161,154,154,0.8);
 }
 
 .trash-img {
@@ -79,8 +67,33 @@
     transform: scale(1.2);
 }
 
+.section-bottum {
+    flex-direction: column;
+}
+
+.category-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #F4F3FB;
+    font-weight: 600;
+}
+
 .cursorMove {
     cursor: move;
+}
+
+/*Section Mobile Customization*/
+
+@media (max-height: 375px) {
+    
+    .div-todo-progress {
+        margin-top: 10px !important;
+    }
 }
 
 @media (max-width: 1550px) {
@@ -99,6 +112,11 @@
 
     .board-content {
         height: 350px;
+    }
+
+    .teamMembers-div { /*board.js-Mobile-Customization*/
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -120,6 +138,11 @@
 }
 
 @media (max-width: 768px) {
+
+    .header-include-html {
+        width: 100%;
+    }
+
     .div-todo-progress {
         margin-top: 40px;
     }
@@ -128,19 +151,15 @@
         flex-direction: column;
         align-items: center;
     }
-    
-    .header-include-html {
-        width: 100%;
-    }
 }
 
 @media (max-width: 600px) {
 
-    .board-box {
-        width: 300px;
-    }
-
     .header-include-html {
         width: 100%;
+    }
+
+    .board-box {
+        width: 300px;
     }
 }
