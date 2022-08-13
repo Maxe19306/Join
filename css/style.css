@@ -192,13 +192,13 @@ body {
 .login-container {
     position: absolute;
     z-index: 1;
-    display: flex;
     flex-direction: column;
     width: 400px;
     height: 450px;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 64px;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .login-container h1 {
@@ -214,6 +214,8 @@ body {
 
 .form-design {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -386,7 +388,17 @@ body {
     float: right;
     height: 700px;
     overflow: auto;
+}
 
+.password-design {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+}
+
+.eye-img-design {
+    width: 25px;
+    cursor: pointer;
 }
 
 
@@ -415,6 +427,7 @@ body {
 
 }
 
+
 @media (max-width: 1345px) {
     .admin-panel-inline-container {
         display: flex;
@@ -434,5 +447,32 @@ body {
         float: unset;
         height: unset;
         overflow: unset;
+    }
+}
+
+
+@media (max-width: 460px) {
+    .login-container {
+        width: 300px;
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+    }
+
+    input,
+    .form-floating {
+        width: 240px !important;
+    }
+}
+
+@media (max-width: 300px) {
+    .login-container {
+        width: 225px;
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+    }
+
+    input,
+    .form-floating {
+        width: 165px !important;
     }
 }

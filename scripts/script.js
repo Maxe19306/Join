@@ -380,3 +380,24 @@ function loadFromLocalStorage() {
         currentUser = JSON.parse(currentUserAsText);
     }
 }
+
+
+/**
+ * show / hide password
+ * 
+ */
+function password_show_hide() {
+    var x = document.getElementById("userPassword");
+    var show_eye = document.getElementById("show_eye");
+    var hide_eye = document.getElementById("hide_eye");
+    hide_eye.classList.remove("d-none");
+    if (x.type === "password") {
+        x.type = "text";
+        show_eye.classList.remove('d-none');
+        hide_eye.classList.add('d-none');
+    } else {
+        x.type = "password";
+        show_eye.classList.add('d-none');
+        hide_eye.classList.remove('d-none');
+    }
+}
