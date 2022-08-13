@@ -81,10 +81,11 @@ function showAllUsers() {
 
     for (let i = 0; i < users.length; i++) {
         const decryptUserName = decrypt('salt', users[i]['name']);
+        const decryptEmail = decrypt('salt', users[i]['email']);
         const isAdmin = users[i]['isAdmin'];
         const isChangePassword = users[i]['changePassword'];
 
-        allUsers.innerHTML += generateShowAllUsersHTML(decryptUserName, i);
+        allUsers.innerHTML += generateShowAllUsersHTML(decryptUserName, decryptEmail, i);
         adminTrue(isAdmin, i);
         passwordChanged(isChangePassword, i);
     }
@@ -128,12 +129,13 @@ function passwordChanged(isChangePassword, i) {
  * @returns 
  * 
  */
-function generateShowAllUsersHTML(decryptUserName, i) {
+function generateShowAllUsersHTML(decryptUserName, decryptEmail, i) {
     return /*html*/ `
     <div class="flex-left underline mt-3">
-        <div class=" width-200px">
+        <div class=" width-225px">
             <span><b>Username:</b><br></span> 
             <span>${decryptUserName}</span>
+            <span>${decryptEmail}</span>
         </div>
         <div class="mb-3 width-200px">
             <span class=""><b>Admin:</b><br></span> 
@@ -160,18 +162,22 @@ function generateShowAllUsersHTML(decryptUserName, i) {
  */
 async function createUser() {
     let userName = document.getElementById('newUserName');
+    let userEmail = document.getElementById("newUserEmail");
     let userPassword = document.getElementById('newUserPassword');
     let isAdmin = document.getElementById('isAdmin');
     const cryptUserName = crypt('salt', userName.value);
+    const cryptEmail = crypt('salt', userEmail.value);
     const cryptPassword = crypt('salt', userPassword.value);
 
+
     if (isAdmin.checked == false) {
-        noAdmin(cryptUserName, cryptPassword);
+        noAdmin(cryptUserName, cryptEmail, cryptPassword);
     } else {
-        admin(cryptUserName, cryptPassword);
+        admin(cryptUserName, cryptEmail, cryptPassword);
     }
 
     userName.value = "";
+    userEmail.value = "";
     userPassword.value = "";
     showAllUsers();
 }
@@ -180,12 +186,14 @@ async function createUser() {
 /**
  * Add user in wihtout admin.
  * @param {string} cryptUserName 
+ * @param {string} cryptEmail
  * @param {string} cryptPassword 
  * 
  */
-async function noAdmin(cryptUserName, cryptPassword) {
+async function noAdmin(cryptUserName, cryptEmail, cryptPassword) {
     let user = {
         'name': cryptUserName,
+        'email': cryptEmail,
         'password': cryptPassword,
         'isAdmin': false,
         'changePassword': true
@@ -199,12 +207,14 @@ async function noAdmin(cryptUserName, cryptPassword) {
 /**
  * Add user in admin.
  * @param {string} cryptUserName 
+ * @param {string} cryptEmail 
  * @param {string} cryptPassword 
  * 
  */
-async function admin(cryptUserName, cryptPassword) {
+async function admin(cryptUserName, cryptEmail, cryptPassword) {
     let user = {
         'name': cryptUserName,
+        'email': cryptEmail,
         'password': cryptPassword,
         'isAdmin': true,
         'changePassword': true
@@ -249,11 +259,12 @@ function login() {
     for (let i = 0; i < users.length; i++) {
         const decryptUserName = decrypt('salt', users[i]['name']);
         const decryptPassword = decrypt('salt', users[i]['password']);
+        const decryptEmail = decrypt('salt', users[i]['email']);
         const isAdmin = users[i]['isAdmin'];
         const changePassword = users[i]['changePassword'];
 
         if (userName.value == decryptUserName && userPassword.value == decryptPassword && changePassword == false) {
-            isLogedIn(decryptUserName, isAdmin);
+            isLogedIn(decryptUserName, decryptEmail, isAdmin);
 
         } else if (userName.value == decryptUserName && userPassword.value == decryptPassword && changePassword == true) {
             document.getElementById('loginScreen').classList.add('d-none');
@@ -272,10 +283,11 @@ function login() {
  * function when the correct user loged in.
  * 
  */
-function isLogedIn(decryptUserName, isAdmin) {
+function isLogedIn(decryptUserName, decryptEmail, isAdmin) {
     window.location.href = "../addTask.html";
     let NewcurrentUser = {
         'name': decryptUserName,
+        'email': decryptEmail,
         'isAdmin': isAdmin
     }
     currentUser.push(NewcurrentUser);
