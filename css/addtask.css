@@ -8,26 +8,32 @@ select {
     padding-right: 10px;
 }
 
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .addTask {
     display: flex;
     border-radius: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    height: 85%;
+    height: 90%;
 }
 
 .mainAddTaskContainer {
-    margin-left: 170px;
+    margin-left: 50px;
     margin-right: 50px;
     margin-top: 20px;
-    width: calc(100% - 150px) !important;
+    width: calc(100% - 150px);
+    height: 90vh;
 }
 
 .inputFielder {
-    width: 580px;
+    width: 500px;
+    margin: 30px;
 }
 
 .avatar {
@@ -94,5 +100,29 @@ textarea {
 
 .buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+}
+
+@media (max-width: 1360px) {
+    .inputFielder {
+        width: 490px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 1260px) {
+    textarea {
+        height: 50px;
+    }
+    input,
+    select {
+        height: 60px;
+    }
+    .test {
+        display: flex;
+        justify-content: space-around;
+    }
+    .test2 {
+        text-align: center;
+    }
 }

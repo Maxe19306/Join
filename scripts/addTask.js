@@ -79,33 +79,28 @@ let SelectedEmployeeEmail;
 
 
 function EmployeePicker() {
-    document.getElementById('avatarPicker').innerHTML = '';
-    for (let i = 0; i < CurrentUsers[0].length; i++) {
-        const user = CurrentUsers[0][i];
-        document.getElementById('avatarPicker').innerHTML += /*html*/ `<option id="MA${i}" onclick="SelectEmployee(${i})"> ${user['name']} </option>`;
+    document.getElementById('NameFromEmployess').innerHTML = '';
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i]['name'];
+        document.getElementById('NameFromEmployess').innerHTML += /*html*/ `<p id="MA${i}" onclick="SelectEmployee(${i})"> ${user} </p>`;
     }
-
 }
 
 
-function SelectEmployee(i) {
+function SelectEmployee(index) {
+    for (let i = 0; i < users.length; i++) {
+        document.getElementById(`MA${i}`).classList.remove('avatar-selected');
+    }
     SelectedEmployee = '';
     SelectedEmployeeEmail = '';
-    SelectedEmployee = document.getElementById(`MA${i}`).innerHTML;
-    SelectedEmployeeEmail = CurrentUsers[0][i]['e-mail'];
+    SelectedEmployee = document.getElementById(`MA${index}`).innerHTML;
+    SelectedEmployeeEmail = users[index]['email'];
+    console.log(SelectedEmployee);
     console.log(SelectedEmployeeEmail);
     document.getElementById('createdButton').disabled = false;
     document.getElementById('createdButton').classList.add('createButtonhover');
+    document.getElementById(`MA${index}`).classList.toggle('avatar-selected');
 }
-
-
-function updateCurrentUsers() {
-    CurrentUsers.splice(CurrentUsers);
-    let hallo = document.getElementById('categorie').value;
-    CurrentUsers.push(allEmployees[`${hallo}`]);
-    console.log(CurrentUsers);
-}
-
 
 async function addTask() {
     let title = document.getElementById('title').value;
@@ -123,9 +118,9 @@ async function addTask() {
         'prio': prio,
         'description': description,
         'creator': creator,
+        'creatorEmail': creatorEmail,
         'createdAt': new Date().getTime(),
         'state': 'todo',
-        'creatorEmail': creatorEmail,
         'SelectedEmployee': SelectedEmployee,
         'SelectedEmployeeEmail': SelectedEmployeeEmail,
     }
@@ -133,7 +128,6 @@ async function addTask() {
     await backend.setItem('task', JSON.stringify(allTask));
     console.log('gerade erstellt', allTask);
     blankForm();
-
 }
 
 
