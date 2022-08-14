@@ -183,7 +183,6 @@ body {
 /* Login */
 
 .img-design {
-    position: absolute;
     height: 100vh;
     width: 100%;
     object-fit: cover;
@@ -209,7 +208,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
 }
 
 .form-design {
