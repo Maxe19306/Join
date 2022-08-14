@@ -55,6 +55,10 @@
     -moz-box-shadow: 6px 5px 8px 0px rgba(161,154,154,0.8);
 }
 
+.ticket:hover {
+    background-color: rgba(244, 243, 251, 0.950);
+}
+
 .trash-img {
     width: 25px;
     fill: rgb(206, 206, 206);
