@@ -107,7 +107,7 @@ function updateCurrentUsers() {
 }
 
 
-function addTask() {
+async function addTask() {
     let title = document.getElementById('title').value;
     let date = document.getElementById('date').value;
     let categorie = document.getElementById('categorie').value;
@@ -128,9 +128,10 @@ function addTask() {
         'SelectedEmployeeEmail': SelectedEmployeeEmail,
     }
     allTask.push(task);
+    await backend.setItem('task', JSON.stringify(allTask));
     console.log('gerade erstellt', allTask);
     blankForm();
-    pushAllTask();
+
 }
 
 
@@ -140,13 +141,6 @@ function blankForm() {
 }
 
 
-function pushAllTask() {
-    let allTaskAsString = JSON.stringify(allTask);
-    backend.setItem('allTasks', allTaskAsString);
-}
-
-
 function loadAllTask() {
-    let allTaskAsString = backend.getItem('allTasks');
-    allTask = JSON.parse(allTaskAsString);
+    allTask = JSON.parse(backend.getItem('task')) || [];
 }
