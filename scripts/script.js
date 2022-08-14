@@ -28,7 +28,6 @@ async function loadDataBaseForPanel() {
     showAllUsers();
     loadFromLocalStorage();
     loadCurrentUser();
-    loadAllTask();
 }
 
 
