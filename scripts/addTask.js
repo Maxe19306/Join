@@ -81,26 +81,39 @@ let SelectedEmployeeEmail;
 function EmployeePicker() {
     document.getElementById('NameFromEmployess').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
-        const user = users[i]['name'];
+        const user = decrypt('salt', users[i]['name']);
         document.getElementById('NameFromEmployess').innerHTML += /*html*/ `<p id="MA${i}" onclick="SelectEmployee(${i})"> ${user} </p>`;
     }
 }
 
 
-function SelectEmployee(index) {
-    for (let i = 0; i < users.length; i++) {
-        document.getElementById(`MA${i}`).classList.remove('avatar-selected');
-    }
-    SelectedEmployee = '';
-    SelectedEmployeeEmail = '';
-    SelectedEmployee = document.getElementById(`MA${index}`).innerHTML;
-    SelectedEmployeeEmail = users[index]['email'];
-    console.log(SelectedEmployee);
-    console.log(SelectedEmployeeEmail);
+function SelectEmployee(i) {
+    ResestSelectedAvatar();
+    deleteSelectEmployee();
+    SelectedEmployee = document.getElementById(`MA${i}`).innerHTML;
+    SelectedEmployeeEmail = decrypt('salt', users[i]['email']);
     document.getElementById('createdButton').disabled = false;
     document.getElementById('createdButton').classList.add('createButtonhover');
-    document.getElementById(`MA${index}`).classList.toggle('avatar-selected');
+    document.getElementById(`MA${i}`).classList.toggle('avatar-selected');
 }
+
+function deleteSelectEmployee() {
+    SelectedEmployee = '';
+    SelectedEmployeeEmail = '';
+}
+
+function ResestSelectedAvatar() {
+    for (let index = 0; index < users.length; index++) {
+        document.getElementById(`MA${index}`).classList.remove('avatar-selected');
+    }
+}
+// not in Work
+function cancelTask() {
+    ResestSelectedAvatar();
+    deleteSelectEmployee();
+    blankForm();
+}
+
 
 async function addTask() {
     let title = document.getElementById('title').value;
@@ -129,7 +142,6 @@ async function addTask() {
     console.log('gerade erstellt', allTask);
     blankForm();
 }
-
 
 function blankForm() {
     document.getElementById('title').value = '';
