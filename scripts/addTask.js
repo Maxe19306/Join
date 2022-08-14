@@ -107,13 +107,14 @@ function updateCurrentUsers() {
 }
 
 
-function addTask() {
+async function addTask() {
     let title = document.getElementById('title').value;
     let date = document.getElementById('date').value;
     let categorie = document.getElementById('categorie').value;
     let prio = document.getElementById('prio').value;
     let description = document.getElementById('description').value;
     let creator = currentUser[0]['name'];
+    let creatorEmail = currentUser[0]['email'];
 
     let task = {
         'title': title,
@@ -124,13 +125,15 @@ function addTask() {
         'creator': creator,
         'createdAt': new Date().getTime(),
         'state': 'todo',
+        'creatorEmail': creatorEmail,
         'SelectedEmployee': SelectedEmployee,
         'SelectedEmployeeEmail': SelectedEmployeeEmail,
     }
     allTask.push(task);
+    await backend.setItem('task', JSON.stringify(allTask));
     console.log('gerade erstellt', allTask);
     blankForm();
-    pushAllTask();
+
 }
 
 
@@ -140,13 +143,6 @@ function blankForm() {
 }
 
 
-function pushAllTask() {
-    let allTaskAsString = JSON.stringify(allTask);
-    backend.setItem('allTasks', allTaskAsString);
-}
-
-
 function loadAllTask() {
-    let allTaskAsString = backend.getItem('allTasks');
-    allTask = JSON.parse(allTaskAsString);
+    allTask = JSON.parse(backend.getItem('task')) || [];
 }
