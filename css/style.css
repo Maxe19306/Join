@@ -193,7 +193,7 @@ body {
     z-index: 1;
     flex-direction: column;
     width: 400px;
-    height: 450px;
+    height: 500px;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 64px;
     border-radius: 10px;
@@ -490,5 +490,22 @@ body {
     input,
     .form-floating {
         width: 165px !important;
+    }
+
+    #extras {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 0 !important;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .extra {
+        margin-right: 0 !important;
+        margin-bottom: 0.25rem;
     }
 }
