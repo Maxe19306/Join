@@ -246,7 +246,6 @@ body {
     color: white;
     transition: all 225ms ease-in-out;
     cursor: pointer;
-    text-decoration: none;
 }
 
 .line {

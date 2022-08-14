@@ -1,78 +1,3 @@
-let CurrentUsers = [
-    [{
-            'name': 'Olaf Mueller',
-            'e-mail': 'Olafmueller@fakeSale.com',
-        }, {
-
-            'name': 'Peter Maurer',
-            'e-mail': 'Petermaurer@fakeSale.com',
-        }, {
-
-            'name': 'Thomas',
-            'e-mail': 'Thomas_ketler@web.de',
-        },
-        {
-            'name': 'Ulrike Sale',
-            'e-mail': 'UlrikeSale@fakeSale.com',
-        },
-    ]
-];
-let allEmployees = {
-    'Sale': [{
-            'name': 'Olaf Mueller',
-            'e-mail': 'Olafmueller@fake.com',
-        }, {
-
-            'name': 'Peter Maurer',
-            'e-mail': 'Petermaurer@fake.com',
-        }, {
-
-            'name': 'Ulrike Sale',
-            'e-mail': 'OlafSale@fake.com',
-        },
-        {
-            'name': 'Ulrike Sale',
-            'e-mail': 'OlafSale@fake.com',
-        },
-    ],
-    'Product': [{
-            'name': 'Olaf Product',
-            'e-mail': 'OlafSale@fake.com',
-        },
-        {
-
-            'name': 'Olaf Product',
-            'e-mail': 'OlafSale@fake.com',
-        }, {
-
-            'name': 'Peter Product',
-            'e-mail': 'OlafSale@fake.com',
-        }, {
-            'name': 'Ulrike Product',
-            'e-mail': 'OlafSale@fake.com',
-        },
-    ],
-    'Marketing': [{
-            'name': 'Olaf Marketing',
-            'e-mail': 'OlafSale@fake.com',
-        },
-        {
-            'name': 'Olaf Marketing',
-            'e-mail': 'OlafSale@fake.com',
-        }, {
-
-            'name': 'Peter Marketing',
-            'e-mail': 'PeterMarketing@fake.com',
-        }, {
-
-            'name': 'Ulrike Marketing',
-            'e-mail': 'OlafSale@fake.com',
-        },
-    ]
-
-}
-
-
 let allTask = [];
 let SelectedEmployee;
 let SelectedEmployeeEmail;
@@ -87,6 +12,11 @@ function EmployeePicker() {
 }
 
 
+/**
+ * 
+ * @param {number} i 
+ * 
+ */
 function SelectEmployee(i) {
     ResestSelectedAvatar();
     deleteSelectEmployee();

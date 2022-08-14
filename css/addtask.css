@@ -114,14 +114,17 @@ textarea {
     textarea {
         height: 50px;
     }
+
     input,
     select {
         height: 60px;
     }
+
     .test {
         display: flex;
         justify-content: space-around;
     }
+
     .test2 {
         text-align: center;
     }
