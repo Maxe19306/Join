@@ -7,10 +7,12 @@ async function loadBacklog() {
 function loadTaskToBacklog() {
     let backlog = document.getElementById('bl-content');
     backlog.innerHTML = '';
-    allTask.slice().reverse().forEach((task, i) => {
-        backlog.innerHTML += renderBacklogTask(task, i);
-        setCategoryColor(task, i);
-    });
+    if (allTask.length > 0) {
+        allTask.slice().reverse().forEach((task, i) => {
+            backlog.innerHTML += renderBacklogTask(task, i);
+            setCategoryColor(task, i);
+        });
+    }
 }
 
 
