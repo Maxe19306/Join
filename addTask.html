@@ -29,7 +29,7 @@
     <div class="header-include-html" include-html="templates/header.html">
     </div>
 
-    <div class="mainAddTaskContainer w-100">
+    <div class="mainAddTaskContainer">
 
 
         <div class="pb-5">
@@ -50,7 +50,7 @@
                 <div class="inputFielder">
                     <h2 class="w-50 fs-5 fw-bold text-primary">Categorie</h2>
                     <select onclick="updateCurrentUsers()" id="categorie" size="1">
-                        <option >Sale</option>
+                        <option>Sale</option>
                         <option>Product</option>
                         <option>Marketing</option>
                     </select>
@@ -70,14 +70,14 @@
 
                 <div class="inputFielder assignedContainer">
                     <h2 class="fs-5 fw-bold text-primary">ASSIGNED TO: <span id="AssignedName"></span> </h2>
-                    <div><img class="avatar" src="img/icon plus.png" onclick="EmployeePicker()" alt="">
-                        <div id="avatarPicker"></div>
-                    </div>
+                    <div class="test"><img class="avatar" src="img/icon plus.png" onclick="EmployeePicker()" alt="">
+                        <div class="test2" id="NameFromEmployess"></div>
 
-                    <div class="buttons"> <button class="cancelButton">CANCEL</button>
-                        <button id="createdButton" class="createButton">CREATE TASK</button>
-                    </div>
 
+                        <div class="buttons"> <button class="cancelButton">CANCEL</button>
+                            <button disabled id="createdButton" class="createButton">CREATE TASK</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
