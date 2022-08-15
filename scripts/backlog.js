@@ -1,9 +1,14 @@
+/**
+ * load data from backend
+ */
 async function loadBacklog() {
     await downloadFromServer();
     loadTaskToBacklog();
 }
 
-
+/**
+ * loads data from each single task and renders a single box for each
+ */
 function loadTaskToBacklog() {
     let backlog = document.getElementById('bl-content');
     backlog.innerHTML = '';
@@ -16,6 +21,11 @@ function loadTaskToBacklog() {
 }
 
 
+/**
+ * sets the color from the task at the left side of the box
+ * @param {data from one added task} task 
+ * @param {index from a single task} i 
+ */
 function setCategoryColor(task, i) {
     background = document.getElementById(`bl-category${i}`);
     if (task.categorie == 'Product') {
@@ -30,8 +40,12 @@ function setCategoryColor(task, i) {
 }
 
 
-/* HTML RENDERING */
-
+/**
+ * renders all task with all current parameters
+ * @param {data from one added task} task 
+ * @param {index from a single task} i 
+ * @returns html code
+ */
 function renderBacklogTask(task, i) {
     return /*html*/ `
     <div id="bl-category${i}" class="bl-task-box">
@@ -39,7 +53,6 @@ function renderBacklogTask(task, i) {
             <div class="row g-0">
                 <div class="col-md-4 bl-w-50 d-flex align-items-center">
                     <div class="d-flex align-items-center bl-w-75">
-                        <!-- <img class="me-4" src="./img/logo.png"> -->
                         <div class="d-flex flex-column w-100">
                             <span>${task.SelectedEmployee}</span>
                             <a class="overflow-hidden text-nowrap text-overflow" href="mailto:${task.SelectedEmployeeEmail}">${task.SelectedEmployeeEmail}</a>
