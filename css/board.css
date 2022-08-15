@@ -31,13 +31,27 @@
     margin-bottom: 8px;
 }
 
+.box-frame-top {
+    background-color: rgb(244, 243, 251);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 20px;
+}
+
+.box-frame-bottom {
+    background-color: rgb(244, 243, 251);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 20px;
+}
+
 .board-content {
     /*Board-Content Departments*/
     background-color: rgb(244, 243, 251);
     overflow: auto;
     height: 800px;
-    padding: 20px;
-    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /*Section board.js/function htmlTicket()*/
@@ -112,6 +126,10 @@
         flex-direction: column;
     }
 
+    .frame-top-ticket {
+        width: 562px;
+    }
+
     .board-box {
         width: 600px;
     }
@@ -166,7 +184,25 @@
         width: 100%;
     }
 
+    .frame-top-ticket {
+        width: 262px;
+    }
+
     .board-box {
         width: 300px;
+    }
+}
+
+@media (max-width: 300px) {
+
+    .board-box {
+        width: 250px;
+    }
+}
+
+@media (max-width: 260px) {
+
+    .board-box {
+        width: 210px;
     }
 }

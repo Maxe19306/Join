@@ -40,10 +40,10 @@ function loadAllFilter() {
     let currenInProgress = allTask.filter(t => t['state'] == 'inProgress');
     let currentTesting = allTask.filter(t => t['state'] == 'testing');
     let currentDone = allTask.filter(t => t['state'] == 'done');
-    document.getElementById('todo').innerHTML= '';
-    document.getElementById('inProgress').innerHTML= '';
-    document.getElementById('testing').innerHTML= '';
-    document.getElementById('done').innerHTML= '';
+    document.getElementById('todo').innerHTML = '';
+    document.getElementById('inProgress').innerHTML = '';
+    document.getElementById('testing').innerHTML = '';
+    document.getElementById('done').innerHTML = '';
     filterTodoTask(currentToDo);
     filterInProgress(currenInProgress);
     filterTesting(currentTesting);
@@ -88,7 +88,7 @@ function filterTesting(currentTesting) {
         document.getElementById('testing').innerHTML += htmlTicket(i, index);
         trashClose(i, index);
     }
-    
+
 }
 
 
@@ -136,7 +136,7 @@ async function deleteTaskOnBoard(i) {
  * @classList .add(`d-none`)
  */
 function trashOpen(i, index) {
-    document.getElementById(`trashAktiv ${i} ${index['state']}`).classList.remove(`d-none`);
+    document.getElementById(`trashAktiv ${i} ${index['state']}`).classList.remove('d-none');
 }
 
 
@@ -161,7 +161,7 @@ function moveto(i) {
 }
 
 
- async function saveUserOnTheBord() {
+async function saveUserOnTheBord() {
     await backend.setItem('task', JSON.stringify(allTask));
 }
 
