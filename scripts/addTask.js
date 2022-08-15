@@ -7,7 +7,7 @@ function EmployeePicker() {
     document.getElementById('NameFromEmployess').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         const user = decrypt('salt', users[i]['name']);
-        document.getElementById('NameFromEmployess').innerHTML += /*html*/ `<p id="MA${i}" onclick="SelectEmployee(${i})"> ${user} </p>`;
+        document.getElementById('NameFromEmployess').innerHTML += /*html*/ `<li class="employee" id="MA${i}" onclick="SelectEmployee(${i})"> ${user} </li>`;
     }
 }
 
@@ -24,7 +24,7 @@ function SelectEmployee(i) {
     SelectedEmployeeEmail = decrypt('salt', users[i]['email']);
     document.getElementById('createdButton').disabled = false;
     document.getElementById('createdButton').classList.add('createButtonhover');
-    document.getElementById(`MA${i}`).classList.toggle('avatar-selected');
+    document.getElementById(`MA${i}`).classList.toggle('Employee-selected');
 }
 
 function deleteSelectEmployee() {
@@ -34,7 +34,7 @@ function deleteSelectEmployee() {
 
 function ResestSelectedAvatar() {
     for (let index = 0; index < users.length; index++) {
-        document.getElementById(`MA${index}`).classList.remove('avatar-selected');
+        document.getElementById(`MA${index}`).classList.remove('Employee-selected');
     }
 }
 // not in Work
@@ -72,6 +72,7 @@ async function addTask() {
     console.log('gerade erstellt', allTask);
     blankForm();
 }
+
 
 function blankForm() {
     document.getElementById('title').value = '';
