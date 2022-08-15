@@ -66,9 +66,7 @@
     margin-bottom: 20px;
     font-size: 18px;
     background-color: white;
-    box-shadow: 6px 5px 8px 0px rgba(161, 154, 154, 0.8);
-    -webkit-box-shadow: 6px 5px 8px 0px rgba(161, 154, 154, 0.8);
-    -moz-box-shadow: 6px 5px 8px 0px rgba(161, 154, 154, 0.8);
+    box-shadow: -2px 0px 6px 0px rgba(0,0,0,0.21);
 }
 
 .ticket:hover {
