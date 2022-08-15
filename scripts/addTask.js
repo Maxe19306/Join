@@ -71,6 +71,11 @@ async function addTask() {
     await backend.setItem('task', JSON.stringify(allTask));
     console.log('gerade erstellt', allTask);
     blankForm();
+    openBoard();
+}
+
+function openBoard() {
+    window.open('board.html')
 }
 
 
