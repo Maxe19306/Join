@@ -37,13 +37,6 @@ function ResestSelectedAvatar() {
         document.getElementById(`MA${index}`).classList.remove('Employee-selected');
     }
 }
-// not in Work
-function cancelTask() {
-    ResestSelectedAvatar();
-    deleteSelectEmployee();
-    blankForm();
-}
-
 
 async function addTask() {
     let title = document.getElementById('title').value;
@@ -67,15 +60,21 @@ async function addTask() {
         'SelectedEmployee': SelectedEmployee,
         'SelectedEmployeeEmail': SelectedEmployeeEmail,
     }
-    allTask.push(task);
-    await backend.setItem('task', JSON.stringify(allTask));
-    console.log('gerade erstellt', allTask);
+    await taskPushToAllTask(task);
     blankForm();
     openBoard();
 }
 
+async function taskPushToAllTask(task) {
+    allTask.push(task);
+    await backend.setItem('task', JSON.stringify(allTask));
+    console.log('gerade erstellt', allTask);
+}
+
+
+
 function openBoard() {
-    window.open('board.html')
+    window.open('board.html');
 }
 
 

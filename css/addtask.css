@@ -138,3 +138,57 @@ textarea {
         text-align: center;
     }
 }
+
+@media (max-width: 770px) {
+    input,
+    select {
+        width: 100% !important;
+    }
+    textarea {
+        width: 100%;
+    }
+    .header-include-html {
+        width: 20px;
+    }
+    .mainAddTaskContainer {
+        width: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .inputFielder {
+        width: 100%;
+    }
+}
+
+@media (max-width: 530px) {
+    .buttons {
+        flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 390px) {
+    .createButton {
+        font-size: 13px;
+        width: 90px;
+    }
+    .cancelButton {
+        font-size: 13px;
+        width: 90px;
+    }
+    .avatar {
+        height: 30px;
+        width: 30px;
+    }
+    .test2 {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 300px) {
+    .createButton {
+        width: 70px;
+    }
+    .cancelButton {
+        width: 70px;
+    }
+}
