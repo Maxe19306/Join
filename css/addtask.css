@@ -187,8 +187,14 @@ textarea {
 @media (max-width: 300px) {
     .createButton {
         width: 70px;
+        margin-right: 0;
     }
     .cancelButton {
         width: 70px;
+        margin-right: 0;
+    }
+    .assignedContainer {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
