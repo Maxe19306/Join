@@ -18,21 +18,22 @@ form {
 .addTask {
     display: flex;
     border-radius: 10px;
-    padding: 20px 20px;
-    margin: 0 20px;
+    padding: 1.5rem 1.5rem;
     height: 90%;
 }
 
 .mainAddTaskContainer {
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 20px;
     width: calc(100% - 150px);
-    height: 90vh;
+    height: calc(100vh - 55px);
+
+}
+
+.addTask-headline {
+    padding-bottom: 3rem !important;
 }
 
 .inputFielder {
-    width: 500px;
+    width: 510px;
     margin: 30px;
 }
 
@@ -115,48 +116,78 @@ textarea {
     justify-content: center;
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1450px) {
     .inputFielder {
         width: 490px;
-        margin: 10px;
+        margin: 10px !important;
     }
 }
 
-@media (max-width: 1260px) {
+@media (max-width: 1249px) {
+    .mainAddTaskContainer {
+        height: 100% !important;
+    }
+
     textarea {
         height: 50px;
     }
+
     input,
     select {
         height: 60px;
     }
-    .test {
+
+    .assign-to-design {
         display: flex;
         justify-content: space-around;
     }
-    .test2 {
-        text-align: center;
-    }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 768px) {
+
+    .header-include-html {
+        width: unset !important;
+    }
+
+    .addTask-headline {
+        padding-top: 100px;
+    }
+
     input,
     select {
         width: 100% !important;
     }
+
     textarea {
-        width: 100%;
+        width: 100% !important;
     }
+
     .header-include-html {
         width: 20px;
     }
+
     .mainAddTaskContainer {
         width: auto;
-        margin-left: 0;
-        margin-right: 0;
     }
+
     .inputFielder {
-        width: 100%;
+        width: 100% !important;
+    }
+
+    .d-flex {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    .assign-to-design {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .all-users-design {
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -166,35 +197,8 @@ textarea {
     }
 }
 
-@media (max-width: 390px) {
-    .createButton {
-        font-size: 13px;
-        width: 90px;
-    }
-    .cancelButton {
-        font-size: 13px;
-        width: 90px;
-    }
-    .avatar {
-        height: 30px;
-        width: 30px;
-    }
-    .test2 {
-        font-size: 13px;
-    }
-}
-
 @media (max-width: 300px) {
-    .createButton {
-        width: 70px;
-        margin-right: 0;
-    }
-    .cancelButton {
-        width: 70px;
-        margin-right: 0;
-    }
-    .assignedContainer {
-        margin-left: 0;
-        margin-right: 0;
+    .addTask {
+        padding: 1.5rem 1rem !important;
     }
 }

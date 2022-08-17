@@ -2,8 +2,9 @@ let allTask = [];
 let SelectedEmployee;
 let SelectedEmployeeEmail;
 
+
 /**
- * This function creates all employees to assign the task to you
+ * This function creates all employees to assign the task to you.
  * 
  */
 function EmployeePicker() {
@@ -16,7 +17,7 @@ function EmployeePicker() {
 
 
 /**
- * This function passes the selected employee to task
+ * This function passes the selected employee to task.
  * @param {number} i 
  * 
  */
@@ -31,10 +32,9 @@ function SelectEmployee(i) {
 }
 
 /**
- * this function resets the information of the selected employee if another one is selected
+ * this function resets the information of the selected employee if another one is selected.
  * 
  */
-
 function deleteSelectEmployee() {
     SelectedEmployee = '';
     SelectedEmployeeEmail = '';
@@ -42,7 +42,7 @@ function deleteSelectEmployee() {
 
 
 /**
- * this function resets the design of the selected employee if another one is selected
+ * this function resets the design of the selected employee if another one is selected.
  * 
  */
 function ResestSelectedAvatar() {
@@ -84,8 +84,7 @@ async function createdTask() {
 
 /**
  * This function is for better readability. It only executes the functions.
- * 
- * @param {*} task - Task is the task you just created
+ * @param {*} task - Task is the task you just created.
  * 
  */
 async function addTask(task) {
@@ -96,10 +95,8 @@ async function addTask(task) {
 
 
 /**
- * This function adds "task" to  "allTask"
- * 
- * @param {string} task  - Task is the task you just created
- * 
+ * This function adds "task" to  "allTask".
+ * @param {string} task  - Task is the task you just created.
  * 
  */
 async function taskPushToAllTask(task) {
@@ -107,23 +104,25 @@ async function taskPushToAllTask(task) {
     await backend.setItem('task', JSON.stringify(allTask));
 }
 
+
 /**
- * This function redirects you to the board.html after creating a new task
+ * This function redirects you to the board.html after creating a new task.
  * 
  */
-
 function openBoard() {
     window.location.replace('board.html');
 }
 
+
 /**
- * This function empties the form after creating a new task
+ * This function empties the form after creating a new task.
  * 
  */
 function blankForm() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
 }
+
 
 /**
  * This function loads allTask into backend as soon as the app is opened.

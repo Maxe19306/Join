@@ -1,5 +1,6 @@
 async function init() {
     await includeHTML();
+    legacyTurn()
 }
 
 async function includeHTML() {
@@ -13,5 +14,17 @@ async function includeHTML() {
         } else {
             element.innerHTML = 'Page not found';
         }
+    }
+}
+
+function legacyTurn() {
+    if (window.location.href == 'https://gruppe-289.developerakademie.net/datenschutz.html' || window.location.href == 'https://gruppe-289.developerakademie.net/impressum.html') {
+        document.getElementById("responsive").classList.add('d-none');
+        document.getElementById("links").classList.add('d-none');
+        document.getElementById("legacy-btn").classList.add('d-none');
+    } else {
+        document.getElementById("responsive").classList.remove('d-none');
+        document.getElementById("links").classList.remove('d-none');
+        document.getElementById("legacy-btn").classList.remove('d-none');
     }
 }

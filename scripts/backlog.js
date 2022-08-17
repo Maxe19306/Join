@@ -1,5 +1,6 @@
 /**
- * load data from backend
+ * load data from backend.
+ * 
  */
 async function loadBacklog() {
     await downloadFromServer();
@@ -7,7 +8,8 @@ async function loadBacklog() {
 }
 
 /**
- * loads data from each single task and renders a single box for each
+ * loads data from each single task and renders a single box for each.
+ * 
  */
 function loadTaskToBacklog() {
     let backlog = document.getElementById('bl-content');
@@ -22,9 +24,10 @@ function loadTaskToBacklog() {
 
 
 /**
- * sets the color from the task at the left side of the box
+ * sets the color from the task at the left side of the box.
  * @param {data from one added task} task 
  * @param {index from a single task} i 
+ *
  */
 function setCategoryColor(task, i) {
     background = document.getElementById(`bl-category${i}`);
@@ -45,6 +48,7 @@ function setCategoryColor(task, i) {
  * @param {data from one added task} task 
  * @param {index from a single task} i 
  * @returns html code
+ * 
  */
 function renderBacklogTask(task, i) {
     return /*html*/ `

@@ -104,6 +104,11 @@
     margin-bottom: 3rem;
 }
 
+#links {
+    display: flex;
+    flex-direction: column;
+}
+
 
 @media(min-width: 769px) {
 
